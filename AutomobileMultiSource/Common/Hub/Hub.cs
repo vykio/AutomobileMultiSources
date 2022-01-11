@@ -32,6 +32,8 @@ namespace AutomobileMultiSource.Common.Hub
 
             return textData.ToJson();
 
+            /* Pourquoi pas retourner une liste de <Models/Vehicule.cs> */
+
             throw new NotImplementedException();
         }
 
