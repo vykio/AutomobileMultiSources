@@ -12,12 +12,17 @@ namespace AutomobileMultiSource.Common.Hub
 
         private HttpServerUtilityBase Server;
 
+        TextDatasource TextData;
+
         public Hub(HttpServerUtilityBase server)
         {
             this.Server = server;
+
+            /* Liste des datasources */
+            this.TextData = new TextDatasource(this.Server);
         }
 
-        public List<Vehicule> Get()
+        public List<Vehicule> GetAll()
         {
 
             /* Je pense que ici, l'idée est de concaténer les différentes sources de données dans un certain format
@@ -29,13 +34,31 @@ namespace AutomobileMultiSource.Common.Hub
              * A réfléchir...
              */
 
-            TextDatasource textData = new TextDatasource(this.Server);
+            string textData = this.GetJson();
 
-            return JsonToVehicule.GetVehicules(textData.ToJson());
+            return JsonToVehicule.GetVehicules(textData);
 
             /* Pourquoi pas retourner une liste de <Models/Vehicule.cs> */
 
             throw new NotImplementedException();
+        }
+
+        public string GetJson()
+        {
+            // Retourner la concaténation de toutes les sources de données
+            return this.TextData.ToJson();
+        }
+
+        public string GetText()
+        {
+            // Retourner la concaténation de toutes les sources de données
+            return this.TextData.ToText();
+        }
+
+        public string GetXml()
+        {
+            // Retourner la concaténation de toutes les sources de données
+            return this.TextData.ToXml();
         }
 
     }

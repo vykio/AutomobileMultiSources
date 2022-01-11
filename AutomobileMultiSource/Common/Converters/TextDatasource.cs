@@ -1,11 +1,16 @@
 ﻿using AutomobileMultiSource.Common.Interfaces;
+using AutomobileMultiSource.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace AutomobileMultiSource.Common.Converters
 {
@@ -56,7 +61,30 @@ namespace AutomobileMultiSource.Common.Converters
 
         public string ToXml()
         {
-            throw new NotImplementedException();
+            String[] source = File.ReadAllLines(@DatasourceLocation);
+            source = source.Skip(1).ToArray();
+
+            XElement cust = new XElement("Root",
+                from str in source
+                let fields = str.Split('\t')
+                select new XElement("Vehicule",
+                    //new XAttribute("Brand", fields[0]),
+                    new XElement("Brand", fields[0]),
+                    new XElement("Model", fields[1]),
+                    new XElement("Registration", fields[2])
+                    /*new XElement("ContactTitle", fields[3]),
+                    new XElement("Phone", fields[4]),
+                    new XElement("FullAddress",
+                        new XElement("Address", fields[5]),
+                        new XElement("City", fields[6]),
+                        new XElement("Region", fields[7]),
+                        new XElement("PostalCode", fields[8]),
+                        new XElement("Country", fields[9])
+                    )*/
+                )
+            );
+
+            return cust.ToString();
         }
     }
 }
