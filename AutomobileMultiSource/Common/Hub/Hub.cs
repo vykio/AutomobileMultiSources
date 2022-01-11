@@ -13,6 +13,7 @@ namespace AutomobileMultiSource.Common.Hub
         private HttpServerUtilityBase Server;
 
         TextDatasource TextData;
+        SqlDatasource SqlData;
 
         public Hub(HttpServerUtilityBase server)
         {
@@ -20,6 +21,7 @@ namespace AutomobileMultiSource.Common.Hub
 
             /* Liste des datasources */
             this.TextData = new TextDatasource(this.Server);
+            this.SqlData = new SqlDatasource(this.Server);
         }
 
         public List<Vehicule> GetAll()
@@ -34,9 +36,9 @@ namespace AutomobileMultiSource.Common.Hub
              * A réfléchir...
              */
 
-            string textData = this.GetJson();
+            string json = this.GetJson();
 
-            return JsonToVehicule.GetVehicules(textData);
+            return JsonToVehicule.GetVehicules(json);
 
             /* Pourquoi pas retourner une liste de <Models/Vehicule.cs> */
 

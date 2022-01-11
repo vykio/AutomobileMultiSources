@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\Converters\SqlDatasource.cs" />
     <Compile Include="Common\Converters\TextDatasource.cs" />
     <Compile Include="Common\Hub\Hub.cs" />
     <Compile Include="Common\Hub\JsonToVehicule.cs" />
@@ -132,6 +133,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\DatasourceSQL.mdf" />
+    <Content Include="App_Data\DatasourceSQL_log.ldf">
+      <DependentUpon>DatasourceSQL.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\DatasourceTxt.txt" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
