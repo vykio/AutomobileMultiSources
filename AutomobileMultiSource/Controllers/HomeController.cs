@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutomobileMultiSource.Common.Hub;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -31,7 +32,9 @@ namespace AutomobileMultiSource.Controllers
         {
             ViewBag.Message = "Toutes les annonces";
 
+            Hub hub = new Hub(Server);
 
+            ViewBag.JsonToShow = hub.Get();
 
             return View();
         }
