@@ -1,4 +1,5 @@
 ﻿using AutomobileMultiSource.Common.Converters;
+using AutomobileMultiSource.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace AutomobileMultiSource.Common.Hub
             this.Server = server;
         }
 
-        public string Get()
+        public List<Vehicule> Get()
         {
 
             /* Je pense que ici, l'idée est de concaténer les différentes sources de données dans un certain format
@@ -30,7 +31,7 @@ namespace AutomobileMultiSource.Common.Hub
 
             TextDatasource textData = new TextDatasource(this.Server);
 
-            return textData.ToJson();
+            return JsonToVehicule.GetVehicules(textData.ToJson());
 
             /* Pourquoi pas retourner une liste de <Models/Vehicule.cs> */
 

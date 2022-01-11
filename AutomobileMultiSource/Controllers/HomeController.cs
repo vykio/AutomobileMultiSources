@@ -34,7 +34,7 @@ namespace AutomobileMultiSource.Controllers
 
             Hub hub = new Hub(Server);
 
-            ViewBag.JsonToShow = hub.Get();
+            ViewBag.Vehicules = hub.Get();
 
             return View();
         }

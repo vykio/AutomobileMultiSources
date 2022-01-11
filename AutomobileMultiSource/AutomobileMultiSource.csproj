@@ -122,6 +122,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\Converters\TextDatasource.cs" />
     <Compile Include="Common\Hub\Hub.cs" />
+    <Compile Include="Common\Hub\JsonToVehicule.cs" />
     <Compile Include="Common\Interfaces\Bridge.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
