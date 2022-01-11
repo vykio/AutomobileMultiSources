@@ -26,5 +26,14 @@ namespace AutomobileMultiSource.Controllers
 
             return View();
         }
+
+        public ActionResult Vehicules()
+        {
+            ViewBag.Message = "Toutes les annonces";
+
+
+
+            return View();
+        }
     }
 }
