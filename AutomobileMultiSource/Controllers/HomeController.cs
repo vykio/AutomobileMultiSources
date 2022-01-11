@@ -21,9 +21,9 @@ namespace AutomobileMultiSource.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Panel()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Vous êtes sur le prototype de la page panel.";
 
             return View();
         }

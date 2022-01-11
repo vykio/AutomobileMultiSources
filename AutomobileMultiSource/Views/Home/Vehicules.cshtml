@@ -13,20 +13,22 @@
         <th>Vehicule</th>
     </tr>
 
-    
-@foreach (var item in ViewBag.Vehicules) {
-    <tr>
-        <td>
 
-            @item.Brand @item.Model (@item.Registration)
+    @foreach (var item in ViewBag.Vehicules)
+    {
+        <tr>
+            <td>
 
-            @*Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-        </td>
-    </tr>
-}
+                @item.Brand @item.Model (@item.Registration)
+
+                @*Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
+
+</table>
 
 @ViewBag.testXml
 
-</table>
