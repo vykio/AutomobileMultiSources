@@ -1,4 +1,5 @@
 ﻿using AutomobileMultiSource.Common.Converters;
+using AutomobileMultiSource.Common.Interfaces;
 using AutomobileMultiSource.Models;
 using System;
 using System.Collections.Generic;
@@ -12,16 +13,16 @@ namespace AutomobileMultiSource.Common.Hub
 
         private HttpServerUtilityBase Server;
 
-        TextDatasource TextData;
-        SqlDatasource SqlData;
+        List<Object> sources;
 
         public Hub(HttpServerUtilityBase server)
         {
             this.Server = server;
 
             /* Liste des datasources */
-            this.TextData = new TextDatasource(this.Server);
-            this.SqlData = new SqlDatasource(this.Server);
+            sources = new List<Object>();
+            sources.Add(new TextDatasource(this.Server));
+            sources.Add(new SqlDatasource(this.Server));
         }
 
         public List<Vehicule> GetAll()
@@ -48,19 +49,26 @@ namespace AutomobileMultiSource.Common.Hub
         public string GetJson()
         {
             // Retourner la concaténation de toutes les sources de données
-            return this.TextData.ToJson();
+            List<String> jsons = new List<String>();
+
+            foreach(dynamic source in this.sources)
+            {
+                jsons.Add(source.ToJson());
+            }
+            
+            return Concatenator.Json(jsons);
         }
 
         public string GetText()
         {
             // Retourner la concaténation de toutes les sources de données
-            return this.TextData.ToText();
+            throw new NotImplementedException();
         }
 
         public string GetXml()
         {
             // Retourner la concaténation de toutes les sources de données
-            return this.TextData.ToXml();
+            throw new NotImplementedException();
         }
 
     }

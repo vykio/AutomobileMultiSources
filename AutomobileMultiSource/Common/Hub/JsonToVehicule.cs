@@ -15,5 +15,10 @@ namespace AutomobileMultiSource.Common.Hub
             return JsonConvert.DeserializeObject<List<Vehicule>>(json);
         }
 
+        public static string GetJson(List<Vehicule> vehicules)
+        {
+            return JsonConvert.SerializeObject(vehicules);
+        } 
+
     }
 }

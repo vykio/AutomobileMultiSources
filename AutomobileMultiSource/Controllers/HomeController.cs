@@ -36,8 +36,6 @@ namespace AutomobileMultiSource.Controllers
 
             ViewBag.Vehicules = hub.GetAll();
 
-            ViewBag.testXml = hub.GetXml();
-
             return View();
         }
     }
