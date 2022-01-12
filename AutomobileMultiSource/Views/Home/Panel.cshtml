@@ -14,17 +14,141 @@
                         <ul>
                             <li><a href="#">Texte</a></li>
                             <li><a href="#">SQL</a></li>
+                            <li><a href="#">JSON</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="panel panel-default">
+                <div id="text" class="panel panel-default">
+                    <div class="panel-heading">Datasource txt</div>
                     <div class="panel-body">
-                        <h3>WIP</h3>
+
+                        @*Html.Action("ShowFile", new { name = "DatasourceTxt.txt", type = "txt" })*@
+
+                        @ViewBag.TxtToTxt
+
+                        @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceTxt.txt", type = "application/txt", downloadName = "TEST.txt" }, new { @class = "btn btn-default" })
+
+                        <button id="test">test</button>
+
+
+                        <!--
+
+    Voici les données liés à $selectedDatasource
+
+    afficher datasource
+
+    Liste des actions disponibles :
+
+    conversion dans les différents types de données disponibles avec affichage direct ou génération du fichier
+
+    eventuellement ajouter la possibilité d'ajouter un fichier de donnée du type, exemple :
+        il y a déja un .txt pour le site, je souhaite ajouter des données liées aux véhicules, je dépose mon fichier
+        on vérifie que l'on peut lire le fichier, on vérifie le format des données, le nombre de "colonnes" etc..
+        si tout est ok, on fusionne les deux fichiers.
+
+
+
+    -->
+
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-9">
+                <div id="text" class="panel panel-default">
+                    <div class="panel-heading">Datasource SQL</div>
+                    <div class="panel-body">
+
+
+
+                        @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceTxt.txt", type = "application/txt", downloadName = "TEST.txt" }, new { @class = "btn btn-default disabled" })
+
+
+                        <!--
+
+                        Voici les données liés à $selectedDatasource
+
+                        afficher datasource
+
+                        Liste des actions disponibles :
+
+                        conversion dans les différents types de données disponibles avec affichage direct ou génération du fichier
+
+                        eventuellement ajouter la possibilité d'ajouter un fichier de donnée du type, exemple :
+                            il y a déja un .txt pour le site, je souhaite ajouter des données liées aux véhicules, je dépose mon fichier
+                            on vérifie que l'on peut lire le fichier, on vérifie le format des données, le nombre de "colonnes" etc..
+                            si tout est ok, on fusionne les deux fichiers.
+
+
+
+                        -->
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9 pull-right">
+                <div id="text" class="panel panel-default">
+                    <div class="panel-heading">Datasource JSON</div>
+                    <div class="panel-body">
+
+
+
+                        @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceTxt.txt", type = "application/txt", downloadName = "TEST.txt" }, new { @class = "btn btn-default disabled" })
+
+
+                        <!--
+
+                        Voici les données liés à $selectedDatasource
+
+                        afficher datasource
+
+                        Liste des actions disponibles :
+
+                        conversion dans les différents types de données disponibles avec affichage direct ou génération du fichier
+
+                        eventuellement ajouter la possibilité d'ajouter un fichier de donnée du type, exemple :
+                            il y a déja un .txt pour le site, je souhaite ajouter des données liées aux véhicules, je dépose mon fichier
+                            on vérifie que l'on peut lire le fichier, on vérifie le format des données, le nombre de "colonnes" etc..
+                            si tout est ok, on fusionne les deux fichiers.
+
+
+
+                        -->
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </main>
+
+<script>
+
+    $(function () {
+        $("#test").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Home/getContent",
+                data: '{name : "json"}',
+                dataType: "json",
+                success: function (response) {
+                    alert(response);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+
+            })
+
+        })
+    })
+
+
+</script>

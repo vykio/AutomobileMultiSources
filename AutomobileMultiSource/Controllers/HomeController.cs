@@ -1,4 +1,5 @@
-﻿using AutomobileMultiSource.Common.Hub;
+﻿using AutomobileMultiSource.Common.Converters;
+using AutomobileMultiSource.Common.Hub;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,10 @@ namespace AutomobileMultiSource.Controllers
         {
             ViewBag.Message = "Vous êtes sur le prototype de la page panel.";
 
+            ViewBag.TxtToTxt = (new TextDatasource(Server)).ToText();
+            ViewBag.TxtToJSON = (new TextDatasource(Server)).ToJson();
+            ViewBag.TxtToXML = (new TextDatasource(Server)).ToXml();
+
             return View();
         }
 
@@ -37,6 +42,36 @@ namespace AutomobileMultiSource.Controllers
             ViewBag.Vehicules = hub.GetAll();
 
             return View();
+        }
+
+        public ActionResult ShowFile(string name, string type)
+        {
+
+            string path = Server.MapPath("~/AppData/");
+            string file_name = path + name;
+
+            switch (type)
+            {
+                case "txt":
+                    System.IO.File.ReadAllText(file_name);
+                    break;
+                default:
+                    break;
+            }
+
+            return View();
+        }
+
+        public FileResult Download(string name, string type, string downloadName)
+        {
+            string filename = Server.MapPath("~/App_Data/" + name);
+
+            return File(filename, type, downloadName);
+        }
+
+        public ContentResult getContent()
+        {
+            return Content((new TextDatasource(Server)).ToJson());
         }
     }
 }
