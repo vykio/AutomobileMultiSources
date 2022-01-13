@@ -19,71 +19,55 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 pull-right">
                 <div id="text" class="panel panel-default">
                     <div class="panel-heading">Datasource txt</div>
                     <div class="panel-body">
+                        <div class="well">
 
-                        @*Html.Action("ShowFile", new { name = "DatasourceTxt.txt", type = "txt" })*@
+                            @foreach (string line in ViewBag.TxtToTxt)
+                            {
+                                @line
+                           
+                            }
 
-                        @ViewBag.TxtToTxt
+                        </div>
 
                         @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceTxt.txt", type = "application/txt", downloadName = "TEST.txt" }, new { @class = "btn btn-default" })
 
-                        <button id="test">test</button>
+                        <hr />
 
+                        @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/xml", downloadName = "txtToXml.xml" }, new { @class = "btn btn-default" })
 
-                        <!--
+                        @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/json", downloadName = "txtToJson.json" }, new { @class = "btn btn-default" })
 
-    Voici les données liés à $selectedDatasource
+                        @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/csv", downloadName = "txtToCsv.csv" }, new { @class = "btn btn-default" })
 
-    afficher datasource
-
-    Liste des actions disponibles :
-
-    conversion dans les différents types de données disponibles avec affichage direct ou génération du fichier
-
-    eventuellement ajouter la possibilité d'ajouter un fichier de donnée du type, exemple :
-        il y a déja un .txt pour le site, je souhaite ajouter des données liées aux véhicules, je dépose mon fichier
-        on vérifie que l'on peut lire le fichier, on vérifie le format des données, le nombre de "colonnes" etc..
-        si tout est ok, on fusionne les deux fichiers.
-
-
-
-    -->
 
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-9 pull-right">
                 <div id="text" class="panel panel-default">
                     <div class="panel-heading">Datasource SQL</div>
                     <div class="panel-body">
+                        <div class="well">
+                            @ViewBag.TxtToTxt
+                        </div>
 
 
+                        @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceSQL.mdf", type = "application/sql", downloadName = "TEST.mdf" }, new { @class = "btn btn-default" })
 
-                        @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceTxt.txt", type = "application/txt", downloadName = "TEST.txt" }, new { @class = "btn btn-default disabled" })
+                        <hr />
 
+                        @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFileFromMdf", new { name = "DatasourceSQL.mdf", sourceType = "application/sql", newType = "application/xml", downloadName = "mdfToXml.xml" }, new { @class = "btn btn-default" })
 
-                        <!--
+                        @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromMdf", new { name = "DatasourceSQL.mdf", sourceType = "application/sql", newType = "application/json", downloadName = "mdfToJson.json" }, new { @class = "btn btn-default" })
 
-                        Voici les données liés à $selectedDatasource
-
-                        afficher datasource
-
-                        Liste des actions disponibles :
-
-                        conversion dans les différents types de données disponibles avec affichage direct ou génération du fichier
-
-                        eventuellement ajouter la possibilité d'ajouter un fichier de donnée du type, exemple :
-                            il y a déja un .txt pour le site, je souhaite ajouter des données liées aux véhicules, je dépose mon fichier
-                            on vérifie que l'on peut lire le fichier, on vérifie le format des données, le nombre de "colonnes" etc..
-                            si tout est ok, on fusionne les deux fichiers.
+                        @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromMdf", new { name = "DatasourceSQL.mdf", sourceType = "application/sql", newType = "application/csv", downloadName = "mdfToCsv.csv" }, new { @class = "btn btn-default" })
 
 
-
-                        -->
 
                     </div>
                 </div>
@@ -98,25 +82,15 @@
 
                         @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceTxt.txt", type = "application/txt", downloadName = "TEST.txt" }, new { @class = "btn btn-default disabled" })
 
+                        <hr />
 
-                        <!--
+                        @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/xml", downloadName = "TEST.xml" }, new { @class = "btn btn-default disabled" })
 
-                        Voici les données liés à $selectedDatasource
+                        @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/json", downloadName = "TEST.json" }, new { @class = "btn btn-default disabled" })
 
-                        afficher datasource
-
-                        Liste des actions disponibles :
-
-                        conversion dans les différents types de données disponibles avec affichage direct ou génération du fichier
-
-                        eventuellement ajouter la possibilité d'ajouter un fichier de donnée du type, exemple :
-                            il y a déja un .txt pour le site, je souhaite ajouter des données liées aux véhicules, je dépose mon fichier
-                            on vérifie que l'on peut lire le fichier, on vérifie le format des données, le nombre de "colonnes" etc..
-                            si tout est ok, on fusionne les deux fichiers.
+                        @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/csv", downloadName = "TEST.csv" }, new { @class = "btn btn-default disabled" })
 
 
-
-                        -->
 
                     </div>
                 </div>
@@ -136,7 +110,8 @@
                 data: '{name : "json"}',
                 dataType: "json",
                 success: function (response) {
-                    alert(response);
+                    console.log(response);
+                    
                 },
                 failure: function (response) {
                     alert(response.responseText);

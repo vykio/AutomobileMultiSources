@@ -2,9 +2,12 @@
 using AutomobileMultiSource.Common.Hub;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml;
 
 namespace AutomobileMultiSource.Controllers
 {
@@ -24,9 +27,11 @@ namespace AutomobileMultiSource.Controllers
 
         public ActionResult Panel()
         {
+
+
             ViewBag.Message = "Vous êtes sur le prototype de la page panel.";
 
-            ViewBag.TxtToTxt = (new TextDatasource(Server)).ToText();
+            ViewBag.TxtToTxt = (new TextDatasource(Server)).ToTextLines();
             ViewBag.TxtToJSON = (new TextDatasource(Server)).ToJson();
             ViewBag.TxtToXML = (new TextDatasource(Server)).ToXml();
 
@@ -47,13 +52,21 @@ namespace AutomobileMultiSource.Controllers
         public ActionResult ShowFile(string name, string type)
         {
 
-            string path = Server.MapPath("~/AppData/");
+            string path = Server.MapPath("~/App_Data/");
             string file_name = path + name;
+            TextDatasource textDatasource = new TextDatasource(Server);
 
             switch (type)
             {
-                case "txt":
-                    System.IO.File.ReadAllText(file_name);
+                case "application/txt":
+                    string text = textDatasource.ToText();
+                    using (StreamReader sr = new StreamReader(file_name))
+                    {
+                        while (!sr.EndOfStream)
+                        {
+                            text += sr.ReadLine() + Environment.NewLine;
+                        }
+                    }
                     break;
                 default:
                     break;
@@ -72,6 +85,80 @@ namespace AutomobileMultiSource.Controllers
         public ContentResult getContent()
         {
             return Content((new TextDatasource(Server)).ToJson());
+        }
+
+        public FileResult ConvertFileFromTxt(string name, string sourceType, string newType, string downloadName)
+        {
+            if(sourceType == "application/txt")
+            {
+                string filename = Server.MapPath("~/App_Data/" + name);
+                string downloadFilePath = Server.MapPath("~/Generated_Data/" + downloadName);
+                TextDatasource textDatasource = new TextDatasource(Server);
+
+                switch (newType)
+                {
+                    case "application/xml":
+                        XmlDocument doc = new XmlDocument();
+                        doc.LoadXml(textDatasource.ToXml());
+                        StreamWriter outStream = System.IO.File.CreateText(downloadFilePath);
+                        doc.Save(outStream);
+                        outStream.Close();
+                        break;
+                    case "application/json":
+                        string json = textDatasource.ToJson();
+                        System.IO.File.WriteAllText(downloadFilePath, json);
+                        break;
+                    case "application/sql":
+                        
+                        break;
+                    case "application/csv":
+                        textDatasource.toCsv();
+                        break;
+                    default:
+                        break;
+                }
+
+                return File(downloadFilePath, newType, downloadName);
+            }
+
+            return null;
+        }
+
+        public FileResult ConvertFileFromMdf(string name, string sourceType, string newType, string downloadName)
+        {
+            if (sourceType == "application/sql")
+            {
+                string filename = Server.MapPath("~/App_Data/" + name);
+                string downloadFilePath = Server.MapPath("~/Generated_Data/" + downloadName);
+                SqlDatasource sqlDatasource = new SqlDatasource(Server);
+
+                switch (newType)
+                {
+                    case "application/xml":
+                        XmlDocument doc = new XmlDocument();
+                        doc.LoadXml(sqlDatasource.ToXml());
+                        StreamWriter outStream = System.IO.File.CreateText(downloadFilePath);
+                        doc.Save(outStream);
+                        outStream.Close();
+                        break;
+                    case "application/json":
+                        string json = sqlDatasource.ToJson();
+                        System.IO.File.WriteAllText(downloadFilePath, json);
+                        break;
+                    case "application/csv":
+                        break;
+                    default:
+                        break;
+                }
+
+                //var byteArray = Encoding.ASCII.GetBytes(string_with_your_data);
+                //var stream = new MemoryStream(byteArray);
+
+
+                return File(downloadFilePath, newType, downloadName);
+            }
+
+            return null;
         }
     }
 }

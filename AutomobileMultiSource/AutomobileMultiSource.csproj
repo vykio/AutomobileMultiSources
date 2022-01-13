@@ -176,7 +176,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Vehicules.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Generated_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

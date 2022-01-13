@@ -3,6 +3,7 @@ using AutomobileMultiSource.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -59,6 +60,12 @@ namespace AutomobileMultiSource.Common.Converters
             return File.ReadAllText(@DatasourceLocation);
         }
 
+        public string[] ToTextLines()
+        {
+            return File.ReadAllLines(@DatasourceLocation);
+        }
+
+
         public string ToXml()
         {
             String[] source = File.ReadAllLines(@DatasourceLocation);
@@ -85,6 +92,43 @@ namespace AutomobileMultiSource.Common.Converters
             );
 
             return cust.ToString();
+        }
+
+        public void toSQL()
+        {
+           string connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename = " + this.DatasourceLocation + ";Integrated Security = True";
+
+           SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = connection;
+
+            /* a tester
+                BULK
+                INSERT MyTable
+                FROM 'c:\myfile.txt'
+                WITH
+                (
+                FIELDTERMINATOR = ',',
+                ROWTERMINATOR = '\n')
+            */
+
+        }
+
+        public void toCsv()
+        {
+            var csv = new List<string[]>();
+            var lines = File.ReadAllLines(@DatasourceLocation);
+
+            foreach (string line in lines)
+            {
+                csv.Add(line.Split('\t'));
+            }
+
+            string writePath = Server.MapPath("~/Generated_Data/")+ "TEST.csv";
+                
+            File.WriteAllLines(writePath, csv.Select(x => string.Join(",", x)));
+
         }
     }
 }
