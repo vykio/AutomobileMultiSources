@@ -125,7 +125,7 @@ namespace AutomobileMultiSource.Common.Converters
                 csv.Add(line.Split('\t'));
             }
 
-            string writePath = Server.MapPath("~/Generated_Data/")+ "TEST.csv";
+            string writePath = Server.MapPath("~/Generated_Data/")+ "txtToCsv.csv";
                 
             File.WriteAllLines(writePath, csv.Select(x => string.Join(",", x)));
 

@@ -54,6 +54,8 @@ namespace AutomobileMultiSource.Common.Converters
                 }
             }
 
+            connection.Close();
+
             return vehicules;
         }
 
@@ -83,5 +85,7 @@ namespace AutomobileMultiSource.Common.Converters
 
             return element.ToString();
         }
+
+       
     }
 }

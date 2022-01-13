@@ -53,11 +53,18 @@
                     <div class="panel-heading">Datasource SQL</div>
                     <div class="panel-body">
                         <div class="well">
-                            @ViewBag.TxtToTxt
+
+                            @foreach (string line in ViewBag.TxtToTxt)
+                            {
+                                <h2>@line</h2>
+
+                            }
+
+
                         </div>
 
 
-                        @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceSQL.mdf", type = "application/sql", downloadName = "TEST.mdf" }, new { @class = "btn btn-default" })
+                        @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceSQL.mdf", type = "application/sql", downloadName = "DatasourceSql.mdf" }, new { @class = "btn btn-default" })
 
                         <hr />
 
