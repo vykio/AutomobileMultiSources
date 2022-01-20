@@ -21,6 +21,43 @@
             </div>
             <div class="col-md-9 pull-right">
                 <div id="text" class="panel panel-default">
+                    <div class="panel-heading">Contenu de la base de données</div>
+                    <div class="panel-body">
+                        <div class="well">
+                            <table>
+                                <tr>
+                                    <th class="col-md-4">Brand</th>
+                                    <th class="col-md-4">Model</th>
+                                    <th class="col-md-4">Registration</th>
+                                </tr>
+
+                                @foreach (var item in ViewBag.Target)
+                                {
+                                    <tr>
+
+                                        <td class="col-md-4">@item.Brand</td>
+                                        <td class="col-md-4">@item.Model</td>
+                                        <td class="col-md-4">@item.Registration</td>
+
+
+                                    </tr>
+
+                                }
+                            </table>
+                        </div>
+
+                        @Html.ActionLink("Supprimer le contenu de la base", "DeleteDatabaseContent", new { }, new { @class = "btn btn-default" })
+                        @Html.ActionLink("Convertir toutes les datasources et remplir la base", "FillDatabaseContent", new { }, new { @class = "btn btn-default" })
+                        @Html.ActionLink("Télécharger le .mdf", "Download", new { name = "FinalDatabase.mdf", type = "application/sql", downloadName = "Target.mdf" }, new { @class = "btn btn-default" })
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 pull-right">
+                <hr />
+                <h1>Convertisseur unitaire</h1>
+                <div id="text" class="panel panel-default">
                     <div class="panel-heading">Datasource txt</div>
                     <div class="panel-body">
                         <div class="well">
@@ -28,7 +65,7 @@
                             @foreach (string line in ViewBag.TxtToTxt)
                             {
                                 @line
-                           
+
                             }
 
                         </div>

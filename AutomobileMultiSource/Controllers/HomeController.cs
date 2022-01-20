@@ -35,6 +35,9 @@ namespace AutomobileMultiSource.Controllers
             ViewBag.TxtToJSON = (new TextDatasource(Server)).ToJson();
             ViewBag.TxtToXML = (new TextDatasource(Server)).ToXml();
 
+            TargetDatasource target = new TargetDatasource(Server);
+            ViewBag.Target = target.GetVehicules();
+
             return View();
         }
 
@@ -160,5 +163,22 @@ namespace AutomobileMultiSource.Controllers
 
             return null;
         }
+
+        public RedirectResult DeleteDatabaseContent()
+        {
+            Hub hub = new Hub(Server);
+            ViewBag.Target = hub.DeleteTarget();
+
+            return Redirect("/Home/Panel");
+        }
+
+        public RedirectResult FillDatabaseContent()
+        {
+            Hub hub = new Hub(Server);
+            ViewBag.Target = hub.FillTarget();
+
+            return Redirect("/Home/Panel");
+        }
+
     }
 }
