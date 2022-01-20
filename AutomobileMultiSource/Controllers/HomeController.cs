@@ -47,7 +47,7 @@ namespace AutomobileMultiSource.Controllers
 
             Hub hub = new Hub(Server);
 
-            ViewBag.Vehicules = hub.GetAll();
+            ViewBag.Vehicules = hub.GetFromTarget();
 
             return View();
         }

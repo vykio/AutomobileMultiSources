@@ -8,10 +8,16 @@
     @*Html.ActionLink("Create New", "Create")*@
 </p>
 
+
 <table class="table">
     <tr>
         <th>Vehicule</th>
     </tr>
+
+    @if (ViewBag.Vehicules.Count == 0)
+    {
+        <div class="alert alert-success" role="alert">Veuillez remplir la base de données pour pouvoir afficher des annonces (Panel > Convertir toutes les datasources et remplir la base)</div>
+    }
 
 
     @foreach (var item in ViewBag.Vehicules)
