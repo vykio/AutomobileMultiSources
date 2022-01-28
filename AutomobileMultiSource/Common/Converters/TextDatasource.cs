@@ -1,4 +1,5 @@
-﻿using AutomobileMultiSource.Common.Interfaces;
+﻿using AutomobileMultiSource.Common.Hub;
+using AutomobileMultiSource.Common.Interfaces;
 using AutomobileMultiSource.Models;
 using Newtonsoft.Json;
 using System;
@@ -27,6 +28,11 @@ namespace AutomobileMultiSource.Common.Converters
         {
             this.Server = server;
             this.DatasourceLocation = server.MapPath("~/App_Data/" + DatasourceName);
+        }
+
+        public List<Vehicule> GetVehicules()
+        {
+            return JsonToVehicule.GetVehicules(this.ToJson());
         }
 
         public string ToJson()

@@ -121,12 +121,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\Converters\SqlDatasource.cs" />
+    <Compile Include="Common\Converters\TargetDatasource.cs" />
     <Compile Include="Common\Converters\TextDatasource.cs" />
     <Compile Include="Common\Hub\Concatenator.cs" />
     <Compile Include="Common\Hub\Hub.cs" />
     <Compile Include="Common\Hub\JsonToVehicule.cs" />
     <Compile Include="Common\Interfaces\Bridge.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -134,11 +136,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\DatasourceSQL.mdf" />
-    <Content Include="App_Data\DatasourceSQL_log.ldf">
-      <DependentUpon>DatasourceSQL.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\DatasourceTxt.txt" />
+    <Content Include="App_Data\FinalDatabase.mdf" />
+    <Content Include="App_Data\FinalDatabase_log.ldf">
+      <DependentUpon>FinalDatabase.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -175,6 +177,7 @@
     <Content Include="Views\Home\Panel.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Vehicules.cshtml" />
+    <Content Include="Views\Upload\UploadFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Generated_Data\" />

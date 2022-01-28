@@ -14,6 +14,7 @@ namespace AutomobileMultiSource.Common.Hub
         private HttpServerUtilityBase Server;
 
         List<Object> sources;
+        TargetDatasource target;
 
         public Hub(HttpServerUtilityBase server)
         {
@@ -23,6 +24,23 @@ namespace AutomobileMultiSource.Common.Hub
             sources = new List<Object>();
             sources.Add(new TextDatasource(this.Server));
             sources.Add(new SqlDatasource(this.Server));
+
+            target = new TargetDatasource(this.Server);
+        }
+
+        public List<Vehicule> GetFromTarget()
+        {
+            return this.target.GetVehicules();
+        }
+
+        public List<Vehicule> DeleteTarget()
+        {
+            return this.target.DeleteAllContent();
+        }
+
+        public List<Vehicule> FillTarget()
+        {
+            return this.target.Fill(this.GetAll());
         }
 
         public List<Vehicule> GetAll()

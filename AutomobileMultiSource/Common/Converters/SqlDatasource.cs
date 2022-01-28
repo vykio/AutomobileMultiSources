@@ -29,7 +29,7 @@ namespace AutomobileMultiSource.Common.Converters
             this.connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename = " +this.DatasourceLocation + ";Integrated Security = True";
         }
 
-        private List<Vehicule> GetVehicules()
+        public List<Vehicule> GetVehicules()
         {
             SqlConnection connection = new SqlConnection(this.connectionString);
             List<Vehicule> vehicules = new List<Vehicule>();
