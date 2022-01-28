@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Upload";
+}
+
+<h2>Upload Txt</h2>
+@using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @Html.TextBox("file", "", new { type = "file" }) <br />
+        <input type="hidden" value="txt" name="datasourceType" />
+        <input type="submit" value="Upload" />
+        @ViewBag.UploadTxtMessage
+    </div>
+}
+
+<h2>Upload Sql</h2>
+@using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @Html.TextBox("file", "", new { type = "file" }) <br />
+        <input type="hidden" value="sql" name="datasourceType" />
+        <input type="submit" value="Upload" />
+        @ViewBag.UploadSqlMessage
+    </div>
+}
+

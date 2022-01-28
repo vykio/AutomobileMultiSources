@@ -21,17 +21,36 @@ namespace AutomobileMultiSource.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult UploadFile(HttpPostedFileBase file)
+        public ActionResult UploadFile(HttpPostedFileBase file, String datasourceType)
         {
             try
             {
                 if (file.ContentLength > 0)
                 {
-                    string _FileName = Path.GetFileName(file.FileName);
+                    String _FileName;
+                    switch(datasourceType)
+                    {
+                        case "txt":
+                            _FileName = "DatasourceTxt.txt";
+                            break;
+                        case "sql":
+                        default:
+                            _FileName = "DatasourceSQL.mdf";
+                            break;
+                    }
                     string _path = Path.Combine(Server.MapPath("~/App_Data"), _FileName);
                     file.SaveAs(_path);
                 }
-                ViewBag.Message = "File Uploaded Successfully!!";
+                switch(datasourceType)
+                {
+                    case "txt":
+                        ViewBag.UploadTxtMessage = "Txt Datasource Uploaded Successfully!!";
+                        break;
+                    case "sql":
+                        ViewBag.UploadSqlMessage = "Sql Datasource Uploaded Successfully!!";
+                        break;
+                }
+                
                 return View();
             }
             catch

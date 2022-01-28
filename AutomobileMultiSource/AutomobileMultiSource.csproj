@@ -136,10 +136,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\DatasourceSQL.mdf" />
-    <Content Include="App_Data\DatasourceSQL_log.ldf">
-      <DependentUpon>DatasourceSQL.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\DatasourceTxt.txt" />
     <Content Include="App_Data\FinalDatabase.mdf" />
     <Content Include="App_Data\FinalDatabase_log.ldf">
@@ -181,7 +177,7 @@
     <Content Include="Views\Home\Panel.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Vehicules.cshtml" />
-    <Content Include="Views\Upload\Upload.cshtml" />
+    <Content Include="Views\Upload\UploadFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Generated_Data\" />

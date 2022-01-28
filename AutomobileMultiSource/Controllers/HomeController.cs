@@ -20,7 +20,6 @@ namespace AutomobileMultiSource.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
 
             return View();
         }
@@ -28,8 +27,7 @@ namespace AutomobileMultiSource.Controllers
         public ActionResult Panel()
         {
 
-
-            ViewBag.Message = "Vous êtes sur le prototype de la page panel.";
+            
 
             ViewBag.TxtToTxt = (new TextDatasource(Server)).ToTextLines();
             ViewBag.TxtToJSON = (new TextDatasource(Server)).ToJson();
