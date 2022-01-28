@@ -61,13 +61,26 @@
                     <div class="panel-heading">Datasource txt</div>
                     <div class="panel-body">
                         <div class="well">
+                            <table>
+                                <tr>
+                                    <th class="col-md-4">Brand</th>
+                                    <th class="col-md-4">Model</th>
+                                    <th class="col-md-4">Registration</th>
+                                </tr>
 
-                            @foreach (string line in ViewBag.TxtToTxt)
-                            {
-                                @line
+                                @foreach (var item in ViewBag.Text)
+                                {
+                                    <tr>
 
-                            }
+                                        <td class="col-md-4">@item.Brand</td>
+                                        <td class="col-md-4">@item.Model</td>
+                                        <td class="col-md-4">@item.Registration</td>
 
+
+                                    </tr>
+
+                                }
+                            </table>
                         </div>
 
                         @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceTxt.txt", type = "application/txt", downloadName = "TEST.txt" }, new { @class = "btn btn-default" })
@@ -90,7 +103,26 @@
                     <div class="panel-heading">Datasource SQL</div>
                     <div class="panel-body">
                         <div class="well">
-                            @ViewBag.TxtToTxt
+                            <table>
+                                <tr>
+                                    <th class="col-md-4">Brand</th>
+                                    <th class="col-md-4">Model</th>
+                                    <th class="col-md-4">Registration</th>
+                                </tr>
+
+                                @foreach (var item in ViewBag.Sql)
+                                {
+                                    <tr>
+
+                                        <td class="col-md-4">@item.Brand</td>
+                                        <td class="col-md-4">@item.Model</td>
+                                        <td class="col-md-4">@item.Registration</td>
+
+
+                                    </tr>
+
+                                }
+                            </table>
                         </div>
 
 

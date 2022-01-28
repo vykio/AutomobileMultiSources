@@ -38,6 +38,12 @@ namespace AutomobileMultiSource.Controllers
             TargetDatasource target = new TargetDatasource(Server);
             ViewBag.Target = target.GetVehicules();
 
+            SqlDatasource sqlSource = new SqlDatasource(Server);
+            ViewBag.Sql = sqlSource.GetVehicules();
+
+            TextDatasource textSource = new TextDatasource(Server);
+            ViewBag.Text = textSource.GetVehicules();
+
             return View();
         }
 
