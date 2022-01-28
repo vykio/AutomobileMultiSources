@@ -128,6 +128,7 @@
     <Compile Include="Common\Hub\JsonToVehicule.cs" />
     <Compile Include="Common\Interfaces\Bridge.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -180,6 +181,7 @@
     <Content Include="Views\Home\Panel.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Vehicules.cshtml" />
+    <Content Include="Views\Upload\Upload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Generated_Data\" />
