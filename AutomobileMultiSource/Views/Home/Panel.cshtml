@@ -110,11 +110,11 @@ CREATE TABLE [dbo].[Vehicule] (
                         </div>
 
                         @{if (ViewBag.Text.Count == 0)
-                        {
+                            {
                             <div class="alert alert-warning" role="alert">Veuillez uploader le fichier <a href="/Upload/UploadFile">DatasourceTxt.txt</a></div>
-                        }
-                        else
-                        {
+                            }
+                            else
+                            {
 
                         @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceTxt.txt", type = "application/txt", downloadName = "TEST.txt" }, new { @class = "btn btn-default" })
 
@@ -125,7 +125,7 @@ CREATE TABLE [dbo].[Vehicule] (
                         @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/json", downloadName = "txtToJson.json" }, new { @class = "btn btn-default" })
 
                         @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/csv", downloadName = "txtToCsv.csv" }, new { @class = "btn btn-default" })
-                        }}
+                            }}
 
                     </div>
                 </div>
@@ -156,11 +156,11 @@ CREATE TABLE [dbo].[Vehicule] (
                         </div>
 
                             @{ if (ViewBag.Sql.Count == 0)
-                            {
+                                {
                                 <div class="alert alert-warning" role="alert">Veuillez uploader le fichier <a href="/Upload/UploadFile">DatasourceSQL.mdf</a></div>
-                            }
-                            else
-                            {
+                                }
+                                else
+                                {
 
                                 @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceSQL.mdf", type = "application/sql", downloadName = "TEST.mdf" }, new { @class = "btn btn-default" })
 
@@ -172,7 +172,7 @@ CREATE TABLE [dbo].[Vehicule] (
 
                                 @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromMdf", new { name = "DatasourceSQL.mdf", sourceType = "application/sql", newType = "application/csv", downloadName = "mdfToCsv.csv" }, new { @class = "btn btn-default" })
 
-                            } }
+                                } }
 
                             </div>
                 </div>
@@ -183,18 +183,45 @@ CREATE TABLE [dbo].[Vehicule] (
                     <div class="panel-heading">Datasource JSON</div>
                     <div class="panel-body">
 
+                        <div class="well">
+                            <table>
+                                <tr>
+                                    <th class="col-md-4">Brand</th>
+                                    <th class="col-md-4">Model</th>
+                                    <th class="col-md-4">Registration</th>
+                                </tr>
 
+                                @foreach (var item in ViewBag.Json)
+                                {
+                                    <tr>
+                                        <td class="col-md-4">@item.Brand</td>
+                                        <td class="col-md-4">@item.Model</td>
+                                        <td class="col-md-4">@item.Registration</td>
+                                    </tr>
 
-                        @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceTxt.txt", type = "application/txt", downloadName = "TEST.txt" }, new { @class = "btn btn-default disabled" })
+                                }
+                            </table>
+                        </div>
 
-                        <hr />
+                        @{ if (ViewBag.Json.Count == 0)
+                            {
+                                <div class="alert alert-warning" role="alert">Veuillez uploader le fichier <a href="/Upload/UploadFile">DatasourceJson.json</a></div>
+                            }
+                            else
+                            {
 
-                        @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/xml", downloadName = "TEST.xml" }, new { @class = "btn btn-default disabled" })
+                                @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceJson.json", type = "application/json", downloadName = "DatasourceJson.json" }, new { @class = "btn btn-default disabled" })
 
-                        @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/json", downloadName = "TEST.json" }, new { @class = "btn btn-default disabled" })
+                                <hr />
 
-                        @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/csv", downloadName = "TEST.csv" }, new { @class = "btn btn-default disabled" })
+                                @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFileFromJson", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/xml", downloadName = "JsonToXml.xml" }, new { @class = "btn btn-default disabled" })
 
+                                @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromJson", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/json", downloadName = "JsonToJson.json" }, new { @class = "btn btn-default disabled" })
+
+                                @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromJson", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/csv", downloadName = "JsonToCsv.csv" }, new { @class = "btn btn-default disabled" })
+
+                            }
+                        }
                     </div>
                 </div>
             </div>

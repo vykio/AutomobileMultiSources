@@ -29,6 +29,7 @@ namespace AutomobileMultiSource.Common.Hub
             sources = new List<Object>();
             sources.Add(new TextDatasource(this.Server));
             sources.Add(new SqlDatasource(this.Server));
+            sources.Add(new JsonDatasource(this.Server));
 
             target = new TargetDatasource(this.Server);
         }
