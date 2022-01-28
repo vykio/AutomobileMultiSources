@@ -16,6 +16,11 @@ namespace AutomobileMultiSource.Common.Hub
         List<Object> sources;
         TargetDatasource target;
 
+        public bool targetConnected()
+        {
+            return this.target.CanConnect();
+        }
+
         public Hub(HttpServerUtilityBase server)
         {
             this.Server = server;

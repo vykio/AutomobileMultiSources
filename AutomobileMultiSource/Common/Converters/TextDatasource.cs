@@ -30,6 +30,11 @@ namespace AutomobileMultiSource.Common.Converters
             this.DatasourceLocation = server.MapPath("~/App_Data/" + DatasourceName);
         }
 
+        public bool CanConnect()
+        {
+            return File.Exists(this.DatasourceLocation);
+        }
+
         public List<Vehicule> GetVehicules()
         {
             return JsonToVehicule.GetVehicules(this.ToJson());

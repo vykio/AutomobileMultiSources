@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -22,6 +23,11 @@ namespace AutomobileMultiSource.Common.Converters
             this.Server = server;
             this.DatasourceLocation = server.MapPath("~/App_Data/" + DatasourceName);
             this.connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename = " + this.DatasourceLocation + ";Integrated Security = True";
+        }
+
+        public bool CanConnect()
+        {
+            return File.Exists(this.DatasourceLocation);
         }
 
         public List<Vehicule> GetVehicules()

@@ -1,5 +1,6 @@
 ﻿using AutomobileMultiSource.Common.Converters;
 using AutomobileMultiSource.Common.Hub;
+using AutomobileMultiSource.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,21 +27,14 @@ namespace AutomobileMultiSource.Controllers
 
         public ActionResult Panel()
         {
-
-            
-
-            ViewBag.TxtToTxt = (new TextDatasource(Server)).ToTextLines();
-            ViewBag.TxtToJSON = (new TextDatasource(Server)).ToJson();
-            ViewBag.TxtToXML = (new TextDatasource(Server)).ToXml();
-
             TargetDatasource target = new TargetDatasource(Server);
-            ViewBag.Target = target.GetVehicules();
+            ViewBag.Target = target.CanConnect() ? target.GetVehicules() : null;
 
             SqlDatasource sqlSource = new SqlDatasource(Server);
-            ViewBag.Sql = sqlSource.GetVehicules();
+            ViewBag.Sql = sqlSource.CanConnect() ? sqlSource.GetVehicules() : new List<Vehicule>();
 
             TextDatasource textSource = new TextDatasource(Server);
-            ViewBag.Text = textSource.GetVehicules();
+            ViewBag.Text = textSource.CanConnect() ? textSource.GetVehicules() : new List<Vehicule>();
 
             return View();
         }
@@ -51,7 +45,7 @@ namespace AutomobileMultiSource.Controllers
 
             Hub hub = new Hub(Server);
 
-            ViewBag.Vehicules = hub.GetFromTarget();
+            ViewBag.Vehicules = hub.targetConnected() ? hub.GetFromTarget() : new List<Vehicule>();
 
             return View();
         }
