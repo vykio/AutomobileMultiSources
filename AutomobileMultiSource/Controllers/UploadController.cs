@@ -33,6 +33,12 @@ namespace AutomobileMultiSource.Controllers
                         case "txt":
                             _FileName = "DatasourceTxt.txt";
                             break;
+                        case "xml":
+                            _FileName = "DatasourceXml.xml";
+                            break;
+                        case "json":
+                            _FileName = "DatasourceJson.json";
+                            break;
                         case "sql":
                         default:
                             _FileName = "DatasourceSQL.mdf";
@@ -48,6 +54,12 @@ namespace AutomobileMultiSource.Controllers
                         break;
                     case "sql":
                         ViewBag.UploadSqlMessage = "Sql Datasource Uploaded Successfully!!";
+                        break;
+                    case "json":
+                        ViewBag.UploadSqlMessage = "Json Datasource Uploaded Successfully!!";
+                        break;
+                    case "xml":
+                        ViewBag.UploadSqlMessage = "Xml Datasource Uploaded Successfully!!";
                         break;
                 }
                 
