@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace AutomobileMultiSource.Common.Interfaces
 {
-    interface Bridge
+    interface Converter
     {
-        List<Vehicule> GetVehicules();
+        string ToJson(List<Vehicule> vehicules);
+        string ToXml(List<Vehicule> vehicules);
+        string ToCsv(List<Vehicule> vehicules);
     }
 }

@@ -72,7 +72,19 @@
                             {
                                 @Html.ActionLink("Supprimer le contenu de la base", "DeleteDatabaseContent", new { }, new { @class = "btn btn-default" })
                                 @Html.ActionLink("Convertir toutes les datasources et remplir la base", "FillDatabaseContent", new { }, new { @class = "btn btn-default" })
-                                @Html.ActionLink("Télécharger le .mdf", "Download", new { name = "FinalDatabase.mdf", type = "application/sql", downloadName = "Target.mdf" }, new { @class = "btn btn-default" })
+
+                                <hr />
+
+                                @Html.ActionLink("Télécharger", "Download", new { name = "FinalDatabase.mdf", type = "application/octet-stream", downloadName = "FinalDatabase.mdf" }, new { @class = "btn btn-default" })
+
+                                <hr />
+
+                                @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFile", new { sourceName = "FinalDatabase.mdf", sourceType = "database", newType = "application/xml", downloadName = "database.xml" }, new { @class = "btn btn-default" })
+
+                                @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFile", new { sourceName = "FinalDatabase.mdf", sourceType = "database", newType = "application/json", downloadName = "database.json" }, new { @class = "btn btn-default" })
+
+                                @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFile", new { sourceName = "FinalDatabase.mdf", sourceType = "database", newType = "application/csv", downloadName = "database.csv" }, new { @class = "btn btn-default" })
+
                             }
                         }
 
@@ -85,7 +97,7 @@
                 <hr />
                 <h1>Convertisseur unitaire</h1>
                 <div id="text" class="panel panel-default">
-                    <div class="panel-heading">Datasource txt</div>
+                    <div class="panel-heading">Datasource Texte (/App_Data/DatasourceTxt.txt)</div>
                     <div class="panel-body">
                         <div class="well">
                             <table>
@@ -117,15 +129,15 @@
                             else
                             {
 
-                                @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceTxt.txt", type = "application/txt", downloadName = "TEST.txt" }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceTxt.txt", type = "application/txt", downloadName = "DatasourceTxt.txt" }, new { @class = "btn btn-default" })
 
                                 <hr />
 
-                                @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/xml", downloadName = "txtToXml.xml" }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFile", new { sourceName = "DatasourceTxt.txt", sourceType = "txt", newType = "application/xml", downloadName = "txt.xml" }, new { @class = "btn btn-default" })
 
-                                @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/json", downloadName = "txtToJson.json" }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFile", new { sourceName = "DatasourceTxt.txt", sourceType = "txt", newType = "application/json", downloadName = "txt.json" }, new { @class = "btn btn-default" })
 
-                                @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/csv", downloadName = "txtToCsv.csv" }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFile", new { sourceName = "DatasourceTxt.txt", sourceType = "txt", newType = "application/csv", downloadName = "txt.csv" }, new { @class = "btn btn-default" })
                             }}
 
                     </div>
@@ -134,7 +146,7 @@
 
             <div class="col-md-9 pull-right">
                 <div id="text" class="panel panel-default">
-                    <div class="panel-heading">Datasource SQL</div>
+                    <div class="panel-heading">Datasource SQL (/App_Data/DatasourceSQL.mdf)</div>
                     <div class="panel-body">
                         <div class="well">
                             <table>
@@ -163,15 +175,15 @@
                             else
                             {
 
-                                @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceSQL.mdf", type = "application/sql", downloadName = "TEST.mdf" }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceSQL.mdf", type = "application/octet-stream", downloadName = "DatasourceSQL.mdf" }, new { @class = "btn btn-default" })
 
                                 <hr />
 
-                                @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFileFromMdf", new { name = "DatasourceSQL.mdf", sourceType = "application/sql", newType = "application/xml", downloadName = "mdfToXml.xml" }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFile", new { sourceName = "DatasourceSQL.mdf", sourceType = "mdf", newType = "application/xml", downloadName = "mdf.xml" }, new { @class = "btn btn-default" })
 
-                                @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromMdf", new { name = "DatasourceSQL.mdf", sourceType = "application/sql", newType = "application/json", downloadName = "mdfToJson.json" }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFile", new { sourceName = "DatasourceSQL.mdf", sourceType = "mdf", newType = "application/json", downloadName = "mdf.json" }, new { @class = "btn btn-default" })
 
-                                @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromMdf", new { name = "DatasourceSQL.mdf", sourceType = "application/sql", newType = "application/csv", downloadName = "mdfToCsv.csv" }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFile", new { sourceName = "DatasourceSQL.mdf", sourceType = "mdf", newType = "application/csv", downloadName = "mdf.csv" }, new { @class = "btn btn-default" })
 
                             } }
 
@@ -181,7 +193,7 @@
 
             <div class="col-md-9 pull-right">
                 <div id="text" class="panel panel-default">
-                    <div class="panel-heading">Datasource JSON</div>
+                    <div class="panel-heading">Datasource JSON (/App_Data/DatasourceJson.json)</div>
                     <div class="panel-body">
 
                         <div class="well">
@@ -211,15 +223,15 @@
                             else
                             {
 
-                                @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceJson.json", type = "application/txt", downloadName = "TEST.txt" }, new { @class = "btn btn-default disabled" })
+                                @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceJson.json", type = "application/json", downloadName = "DatasourceJson.json" }, new { @class = "btn btn-default" })
 
                                 <hr />
 
-                                @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/xml", downloadName = "TEST.xml" }, new { @class = "btn btn-default disabled" })
+                                @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFile", new { sourceName = "DatasourceJson.json", sourceType = "json", newType = "application/xml", downloadName = "json.xml" }, new { @class = "btn btn-default" })
 
-                                @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/json", downloadName = "TEST.json" }, new { @class = "btn btn-default disabled" })
+                                @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFile", new { sourceName = "DatasourceJson.json", sourceType = "json", newType = "application/json", downloadName = "json.json" }, new { @class = "btn btn-default" })
 
-                                @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/csv", downloadName = "TEST.csv" }, new { @class = "btn btn-default disabled" })
+                                @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFile", new { sourceName = "DatasourceJson.json", sourceType = "json", newType = "application/csv", downloadName = "json.csv" }, new { @class = "btn btn-default" })
 
                             } }
                             </div>
@@ -228,7 +240,7 @@
 
             <div class="col-md-9 pull-right">
                 <div id="text" class="panel panel-default">
-                    <div class="panel-heading">Datasource XML</div>
+                    <div class="panel-heading">Datasource XML (/App_Data/DatasourceXml.xml)</div>
                     <div class="panel-body">
 
                         <div class="well">
@@ -258,15 +270,15 @@
                             else
                             {
 
-                                @Html.ActionLink("Télécharger", "Download", new { name = "XmlDatasource.xml", type = "application/xml", downloadName = "TEST.xml" }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Télécharger", "Download", new { name = "XmlDatasource.xml", type = "application/xml", downloadName = "DatasourceXml.xml" }, new { @class = "btn btn-default" })
 
                                 <hr />
 
-                                @Html.ActionLink("Convertir en TXT et Télécharger", "ConvertFileFromXml", new { name = "XmlDatasource.xml", sourceType = "application/xml", newType = "application/txt", downloadName = "XmlToTxt.txt" }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFile", new { sourceName = "DatasourceXml.xml", sourceType = "xml", newType = "application/xml", downloadName = "xml.xml" }, new { @class = "btn btn-default" })
 
-                                @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromXml", new { name = "XmlDatasource.xml", sourceType = "application/xml", newType = "application/json", downloadName = "XmlToJson.json" }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFile", new { sourceName = "DatasourceXml.xml", sourceType = "xml", newType = "application/json", downloadName = "xml.json" }, new { @class = "btn btn-default" })
 
-                                @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromXml", new { name = "XmlDatasource.xml", sourceType = "application/xml", newType = "application/csv", downloadName = "XmlToCsv.csv" }, new { @class = "btn btn-default disabled" })
+                                @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFile", new { sourceName = "DatasourceXml.xml", sourceType = "xml", newType = "application/csv", downloadName = "xml.csv" }, new { @class = "btn btn-default" })
 
                                 }
                             }
@@ -277,31 +289,3 @@
         </div>
     </div>
 </main>
-
-<script>
-
-    $(function () {
-        $("#test").click(function () {
-            $.ajax({
-                type: "GET",
-                url: "/Home/getContent",
-                data: '{name : "json"}',
-                dataType: "json",
-                success: function (response) {
-                    console.log(response);
-                    
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-
-            })
-
-        })
-    })
-
-
-</script>

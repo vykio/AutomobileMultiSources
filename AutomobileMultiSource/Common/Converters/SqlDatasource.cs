@@ -18,8 +18,8 @@ namespace AutomobileMultiSource.Common.Converters
 
         private HttpServerUtilityBase Server;
 
-        private string DatasourceName = "DatasourceSQL.mdf";
-        private string DatasourceLocation;
+        public string DatasourceName = "DatasourceSQL.mdf";
+        public string DatasourceLocation;
         private string connectionString;
 
         public SqlDatasource(HttpServerUtilityBase server)
@@ -64,7 +64,7 @@ namespace AutomobileMultiSource.Common.Converters
             return vehicules;
         }
 
-        public string ToJson()
+        /*public string ToJson()
         {
             var json = JsonConvert.SerializeObject(this.GetVehicules());
 
@@ -89,7 +89,7 @@ namespace AutomobileMultiSource.Common.Converters
             XElement element = XElement.Parse(xmlString);
 
             return element.ToString();
-        }
+        }*/
 
        
     }

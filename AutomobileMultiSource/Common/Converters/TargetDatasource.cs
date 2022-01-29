@@ -1,4 +1,5 @@
-﻿using AutomobileMultiSource.Models;
+﻿using AutomobileMultiSource.Common.Interfaces;
+using AutomobileMultiSource.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,13 +10,13 @@ using System.Web;
 
 namespace AutomobileMultiSource.Common.Converters
 {
-    public class TargetDatasource
+    public class TargetDatasource : Bridge
     {
 
         private HttpServerUtilityBase Server;
 
-        private string DatasourceName = "FinalDatabase.mdf";
-        private string DatasourceLocation;
+        public string DatasourceName = "FinalDatabase.mdf";
+        public string DatasourceLocation;
         private string connectionString;
 
         public TargetDatasource(HttpServerUtilityBase server)

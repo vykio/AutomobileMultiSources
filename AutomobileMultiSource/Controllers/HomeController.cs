@@ -63,10 +63,12 @@ namespace AutomobileMultiSource.Controllers
             string file_name = path + name;
             TextDatasource textDatasource = new TextDatasource(Server);
 
+            VehiculeConverter converter = new VehiculeConverter();
+
             switch (type)
             {
                 case "application/txt":
-                    string text = textDatasource.ToText();
+                    string text = converter.ToCsv(textDatasource.GetVehicules());
                     using (StreamReader sr = new StreamReader(file_name))
                     {
                         while (!sr.EndOfStream)
@@ -89,115 +91,62 @@ namespace AutomobileMultiSource.Controllers
             return File(filename, type, downloadName);
         }
 
-        public ContentResult getContent()
+        public FileResult ConvertFile(string sourceName, string sourceType, string newType, string downloadName)
         {
-            return Content((new TextDatasource(Server)).ToJson());
-        }
-
-        public FileResult ConvertFileFromTxt(string name, string sourceType, string newType, string downloadName)
-        {
-            if(sourceType == "application/txt")
+            dynamic datasource;
+            switch(sourceType)
             {
-                string filename = Server.MapPath("~/App_Data/" + name);
-                string downloadFilePath = Server.MapPath("~/Generated_Data/" + downloadName);
-                TextDatasource textDatasource = new TextDatasource(Server);
-
-                switch (newType)
-                {
-                    case "application/xml":
-                        XmlDocument doc = new XmlDocument();
-                        doc.LoadXml(textDatasource.ToXml());
-                        StreamWriter outStream = System.IO.File.CreateText(downloadFilePath);
-                        doc.Save(outStream);
-                        outStream.Close();
-                        break;
-                    case "application/json":
-                        string json = textDatasource.ToJson();
-                        System.IO.File.WriteAllText(downloadFilePath, json);
-                        break;
-                    case "application/sql":
-                        
-                        break;
-                    case "application/csv":
-                        textDatasource.toCsv();
-                        break;
-                    default:
-                        break;
-                }
-
-                return File(downloadFilePath, newType, downloadName);
+                case "txt":
+                    datasource = new TextDatasource(Server);
+                    break;
+                case "xml":
+                    datasource = new XmlDatasource(Server);
+                    break;
+                case "json":
+                    datasource = new JsonDatasource(Server);
+                    break;
+                case "database":
+                    datasource = new TargetDatasource(Server);
+                    break;
+                case "mdf":
+                default:
+                    datasource = new SqlDatasource(Server);
+                    break;
             }
 
-            return null;
-        }
+            VehiculeConverter converter = new VehiculeConverter();
+            string DownloadFilePath = Server.MapPath("~/Generated_Data/" + downloadName);
 
-        public FileResult ConvertFileFromMdf(string name, string sourceType, string newType, string downloadName)
-        {
-            if (sourceType == "application/sql")
+            if (System.IO.File.Exists(DownloadFilePath))
             {
-                string filename = Server.MapPath("~/App_Data/" + name);
-                string downloadFilePath = Server.MapPath("~/Generated_Data/" + downloadName);
-                SqlDatasource sqlDatasource = new SqlDatasource(Server);
-
-                switch (newType)
-                {
-                    case "application/xml":
-                        XmlDocument doc = new XmlDocument();
-                        doc.LoadXml(sqlDatasource.ToXml());
-                        StreamWriter outStream = System.IO.File.CreateText(downloadFilePath);
-                        doc.Save(outStream);
-                        outStream.Close();
-                        break;
-                    case "application/json":
-                        string json = sqlDatasource.ToJson();
-                        System.IO.File.WriteAllText(downloadFilePath, json);
-                        break;
-                    case "application/csv":
-                        break;
-                    default:
-                        break;
-                }
-
-                //var byteArray = Encoding.ASCII.GetBytes(string_with_your_data);
-                //var stream = new MemoryStream(byteArray);
-
-
-                return File(downloadFilePath, newType, downloadName);
+                System.IO.File.Delete(DownloadFilePath);
             }
 
-            return null;
-        }
-
-        public FileResult ConvertFileFromXml(string name, string sourceType, string newType, string downloadName)
-        {
-            if (sourceType == "application/xml")
+            string output = "";
+            switch (newType)
             {
-                string filename = Server.MapPath("~/App_Data/" + name);
-                string downloadFilePath = Server.MapPath("~/Generated_Data/" + downloadName);
-                XmlDatasource xmlDatasource = new XmlDatasource(Server);
-
-                switch (newType)
-                {
-                    case "application/txt":
-                        XmlDocument doc = new XmlDocument();
-                        doc.LoadXml(xmlDatasource.ToText());
-                        StreamWriter outStream = System.IO.File.CreateText(downloadFilePath);
-                        doc.Save(outStream);
-                        outStream.Close();
-                        break;
-                    case "application/json":
-                        string json = xmlDatasource.ToJson();
-                        System.IO.File.WriteAllText(downloadFilePath, json);
-                        break;
-                    default:
-                        break;
-                }
-
-                return File(downloadFilePath, newType, downloadName);
+                case "application/xml":
+                    output = converter.ToXml(datasource.GetVehicules());
+                    break;
+                case "application/json":
+                    output = converter.ToJson(datasource.GetVehicules());
+                    break;
+                case "application/csv":
+                    output = converter.ToCsv(datasource.GetVehicules());
+                    break;
+                default:
+                    break;
             }
 
-            return null;
+            using (StreamWriter writer = System.IO.File.CreateText(DownloadFilePath))
+            {
+                writer.WriteLine(output);
+            }
+
+            return File(DownloadFilePath, newType, downloadName);
+
         }
+
 
         public RedirectResult DeleteDatabaseContent()
         {

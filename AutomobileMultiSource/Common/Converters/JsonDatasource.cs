@@ -14,8 +14,8 @@ namespace AutomobileMultiSource.Common.Converters
 
         private HttpServerUtilityBase Server;
 
-        private string DatasourceName = "DatasourceJson.json";
-        private string DatasourceLocation;
+        public string DatasourceName = "DatasourceJson.json";
+        public string DatasourceLocation;
 
         public JsonDatasource(HttpServerUtilityBase server)
         {
@@ -30,15 +30,15 @@ namespace AutomobileMultiSource.Common.Converters
 
         public List<Vehicule> GetVehicules()
         {
-            return JsonToVehicule.GetVehicules(this.ToJson());
+            return JsonToVehicule.GetVehicules(this.GetData());
         }
 
-        public string ToJson()
+        public string GetData()
         {
             return File.ReadAllText(DatasourceLocation);
         }
 
-        public string ToText()
+        /*public string ToText()
         {
             throw new NotImplementedException();
         }
@@ -46,6 +46,6 @@ namespace AutomobileMultiSource.Common.Converters
         public string ToXml()
         {
             throw new NotImplementedException();
-        }
+        }*/
     }
 }

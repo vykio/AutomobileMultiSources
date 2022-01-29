@@ -39,6 +39,9 @@ namespace AutomobileMultiSource.Controllers
                         case "json":
                             _FileName = "DatasourceJson.json";
                             break;
+                        case "database":
+                            _FileName = "FinalDatabase.mdf";
+                            break;
                         case "sql":
                         default:
                             _FileName = "DatasourceSQL.mdf";
@@ -50,16 +53,19 @@ namespace AutomobileMultiSource.Controllers
                 switch(datasourceType)
                 {
                     case "txt":
-                        ViewBag.UploadTxtMessage = "Txt Datasource Uploaded Successfully!!";
+                        ViewBag.UploadTxtMessage = "La source de données Texte à été uploadée vers /App_Data/DatasourceTxt.txt";
                         break;
                     case "sql":
-                        ViewBag.UploadSqlMessage = "Sql Datasource Uploaded Successfully!!";
+                        ViewBag.UploadSqlMessage = "La source de données SQL à été uploadée vers /App_Data/DatasourceSQL.mdf";
                         break;
                     case "json":
-                        ViewBag.UploadJsonMessage = "Json Datasource Uploaded Successfully!!";
+                        ViewBag.UploadJsonMessage = "La source de données JSON à été uploadée vers /App_Data/DatasourceJson.json";
                         break;
                     case "xml":
-                        ViewBag.UploadXmlMessage = "Xml Datasource Uploaded Successfully!!";
+                        ViewBag.UploadXmlMessage = "La source de données XML à été uploadée vers /App_Data/DatasourceXml.xml";
+                        break;
+                    case "database":
+                        ViewBag.UploadTargetMessage = "La base de données cible a été importée";
                         break;
                 }
                 

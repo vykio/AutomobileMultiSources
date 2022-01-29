@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace AutomobileMultiSource.Common.Converters
 {
@@ -17,8 +18,8 @@ namespace AutomobileMultiSource.Common.Converters
 
         private HttpServerUtilityBase Server;
 
-        private string DatasourceName = "DatasourceXml.xml";
-        private string DatasourceLocation;
+        public string DatasourceName = "DatasourceXml.xml";
+        public string DatasourceLocation;
 
         public XmlDatasource(HttpServerUtilityBase server)
         {
@@ -33,43 +34,35 @@ namespace AutomobileMultiSource.Common.Converters
 
         public List<Vehicule> GetVehicules()
         {
-            return JsonToVehicule.GetVehicules(this.ToJson());
-        }
-
-        public string ToJson()
-        {
+            List<Vehicule> vehicules = new List<Vehicule>();
             XmlDocument doc = new XmlDocument();
-            doc.LoadXml(File.ReadAllText(DatasourceLocation));
-            return JsonConvert.SerializeXmlNode(doc); ;
-        }
+            doc.Load(DatasourceLocation);
 
-        public string ToText()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(File.ReadAllText(DatasourceLocation));
+            XmlNodeList nodeList = doc.SelectNodes("/Vehicules/Vehicule");
 
-            StringBuilder sb = new StringBuilder(1024);
-            foreach (XmlNode node in doc.DocumentElement.ChildNodes)
+            foreach (XmlNode node in nodeList)
             {
-                if (!(string.IsNullOrEmpty(node.Name) || string.IsNullOrEmpty(node.InnerText)))
+                Vehicule vehicule = new Vehicule();
+                foreach (XmlNode child in node.ChildNodes)
                 {
-                    string nodeName = node.Name;
-                    sb.Append(char.ToUpper(node.Name[0]));
-                    sb.Append(node.Name.Substring(1));
-                    sb.Append(": ");
-                    sb.AppendLine(node.InnerText);
-                    sb.AppendLine();
-
+                    switch (child.Name)
+                    {
+                        case "Brand":
+                            vehicule.Brand = child.InnerText;
+                            break;
+                        case "Model":
+                            vehicule.Model = child.InnerText;
+                            break;
+                        case "Registration":
+                            vehicule.Registration = child.InnerText;
+                            break;
+                    }
                 }
+                vehicules.Add(vehicule);
             }
 
-            return sb.ToString();
-
+            return vehicules;
         }
-
-        public string ToXml()
-        {
-            return File.ReadAllText(@DatasourceLocation);
-        }
+        
     }
 }

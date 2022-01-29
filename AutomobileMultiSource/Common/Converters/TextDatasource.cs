@@ -21,8 +21,8 @@ namespace AutomobileMultiSource.Common.Converters
 
         private HttpServerUtilityBase Server;
 
-        private string DatasourceName = "DatasourceTxt.txt";
-        private string DatasourceLocation;
+        public string DatasourceName = "DatasourceTxt.txt";
+        public string DatasourceLocation;
 
         public TextDatasource(HttpServerUtilityBase server)
         {
@@ -37,10 +37,10 @@ namespace AutomobileMultiSource.Common.Converters
 
         public List<Vehicule> GetVehicules()
         {
-            return JsonToVehicule.GetVehicules(this.ToJson());
+            return JsonToVehicule.GetVehicules(this.GetData());
         }
 
-        public string ToJson()
+        private string GetData()
         {
             var csv = new List<string[]>();
             var lines = File.ReadAllLines(@DatasourceLocation);
@@ -66,7 +66,7 @@ namespace AutomobileMultiSource.Common.Converters
             return JsonConvert.SerializeObject(listObjResult);
         }
 
-        public string ToText()
+        /*public string ToText()
         {
             return File.ReadAllText(@DatasourceLocation);
         }
@@ -114,7 +114,7 @@ namespace AutomobileMultiSource.Common.Converters
                 ROWTERMINATOR = '\n')
             */
 
-        }
+       /* }
 
         public void toCsv()
         {
@@ -130,6 +130,6 @@ namespace AutomobileMultiSource.Common.Converters
                 
             File.WriteAllLines(writePath, csv.Select(x => string.Join(",", x)));
 
-        }
+        }*/
     }
 }

@@ -75,10 +75,11 @@ namespace AutomobileMultiSource.Common.Hub
         {
             // Retourner la concaténation de toutes les sources de données
             List<String> jsons = new List<String>();
+            VehiculeConverter converter = new VehiculeConverter();
 
             foreach(dynamic source in this.sources)
             {
-                jsons.Add(source.ToJson());
+                jsons.Add(converter.ToJson(source.GetVehicules()));
             }
             
             return Concatenator.Json(jsons);
