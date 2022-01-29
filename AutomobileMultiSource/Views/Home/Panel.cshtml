@@ -7,51 +7,37 @@
 <main class="flex-shrink-0">
     <div class="container" style="padding-top: 50px">
         <div class="row align-items-start full-height">
-            <div class="col-md-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Types de données supportés</div>
-                    <div class="panel-body">
-                        <ul>
-                            <li><a href="#">Texte</a></li>
-                            <li><a href="#">SQL</a></li>
-                            <li><a href="#">JSON</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9 pull-right">
-                <div id="text" class="panel panel-default">
-                    <div class="panel-heading">Contenu de la base de données</div>
-                    <div class="panel-body">
-                        <div class="well">
-                            <table>
-                                <tr>
-                                    <th class="col-md-4">Brand</th>
-                                    <th class="col-md-4">Model</th>
-                                    <th class="col-md-4">Registration</th>
-                                </tr>
+            <div id="text" class="panel panel-default">
+                <div class="panel-heading">Contenu de la base de données</div>
+                <div class="panel-body">
+                    <div class="well">
+                        <table>
+                            <tr>
+                                <th class="col-md-4">Brand</th>
+                                <th class="col-md-4">Model</th>
+                                <th class="col-md-4">Registration</th>
+                            </tr>
 
-                                @{
-                                    if (ViewBag.Target != null)
+                            @{
+                                if (ViewBag.Target != null)
+                                {
+                                    foreach (var item in ViewBag.Target)
                                     {
-                                        foreach (var item in ViewBag.Target)
-                                        {
-                                            <tr>
-                                                <td class="col-md-4">@item.Brand</td>
-                                                <td class="col-md-4">@item.Model</td>
-                                                <td class="col-md-4">@item.Registration</td>
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td class="col-md-4">@item.Brand</td>
+                                            <td class="col-md-4">@item.Model</td>
+                                            <td class="col-md-4">@item.Registration</td>
+                                        </tr>
                                     }
                                 }
-                            </table>
-                        </div>
-
-                        @{ if (ViewBag.Sql.Count == 0 || ViewBag.Text.Count == 0 || ViewBag.Xml.Count == 0 || ViewBag.Json.Count == 0)
-                            {
-                                <div class="alert alert-warning" role="alert">Au moins une base source n'est pas uploadée</div>
                             }
-                            else if (ViewBag.Target == null)
+                        </table>
+                    </div>
+
+                    @{ if (ViewBag.Sql.Count == 0 || ViewBag.Text.Count == 0 || ViewBag.Xml.Count == 0 || ViewBag.Json.Count == 0)
+                        {
+                            <div class="alert alert-warning" role="alert">Au moins une base source n'est pas uploadée</div>
+                            if (ViewBag.Target == null)
                             {
                                 <div class="alert alert-warning" role="alert">
                                     La base FinalDatabase.mdf n'est pas dans le dossier App_Data du projet ! Créez la sur Visual Studio 2017 ou importez la:
@@ -68,34 +54,37 @@
                                 </div>
 
                             }
-                            else
-                            {
-                                @Html.ActionLink("Supprimer le contenu de la base", "DeleteDatabaseContent", new { }, new { @class = "btn btn-default" })
-                                @Html.ActionLink("Convertir toutes les datasources et remplir la base", "FillDatabaseContent", new { }, new { @class = "btn btn-default" })
-
-                                <hr />
-
-                                @Html.ActionLink("Télécharger", "Download", new { name = "FinalDatabase.mdf", type = "application/octet-stream", downloadName = "FinalDatabase.mdf" }, new { @class = "btn btn-default" })
-
-                                <hr />
-
-                                @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFile", new { sourceName = "FinalDatabase.mdf", sourceType = "database", newType = "application/xml", downloadName = "database.xml" }, new { @class = "btn btn-default" })
-
-                                @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFile", new { sourceName = "FinalDatabase.mdf", sourceType = "database", newType = "application/json", downloadName = "database.json" }, new { @class = "btn btn-default" })
-
-                                @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFile", new { sourceName = "FinalDatabase.mdf", sourceType = "database", newType = "application/csv", downloadName = "database.csv" }, new { @class = "btn btn-default" })
-
-                            }
                         }
+                        else
+                        {
+                            @Html.ActionLink("Supprimer le contenu de la base", "DeleteDatabaseContent", new { }, new { @class = "btn btn-default" })
+                            @Html.ActionLink("Convertir toutes les datasources et remplir la base", "FillDatabaseContent", new { }, new { @class = "btn btn-default" })
+
+                            <hr />
+
+                            @Html.ActionLink("Télécharger", "Download", new { name = "FinalDatabase.mdf", type = "application/octet-stream", downloadName = "FinalDatabase.mdf" }, new { @class = "btn btn-default" })
+
+                            <hr />
+
+                            @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFile", new { sourceName = "FinalDatabase.mdf", sourceType = "database", newType = "application/xml", downloadName = "database.xml" }, new { @class = "btn btn-default" })
+
+                            @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFile", new { sourceName = "FinalDatabase.mdf", sourceType = "database", newType = "application/json", downloadName = "database.json" }, new { @class = "btn btn-default" })
+
+                            @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFile", new { sourceName = "FinalDatabase.mdf", sourceType = "database", newType = "application/csv", downloadName = "database.csv" }, new { @class = "btn btn-default" })
+
+                        }
+                    }
 
 
 
-                    </div>
                 </div>
             </div>
-            <div class="col-md-9 pull-right">
-                <hr />
-                <h1>Convertisseur unitaire</h1>
+        </div>
+
+        <hr />
+        <h1>Convertisseur unitaire</h1>
+        <div class="row">
+            <div class="col-md-6">
                 <div id="text" class="panel panel-default">
                     <div class="panel-heading">Datasource Texte (/App_Data/DatasourceTxt.txt)</div>
                     <div class="panel-body">
@@ -134,9 +123,11 @@
                                 <hr />
 
                                 @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFile", new { sourceName = "DatasourceTxt.txt", sourceType = "txt", newType = "application/xml", downloadName = "txt.xml" }, new { @class = "btn btn-default" })
-
+                                <br />
+                                <br />
                                 @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFile", new { sourceName = "DatasourceTxt.txt", sourceType = "txt", newType = "application/json", downloadName = "txt.json" }, new { @class = "btn btn-default" })
-
+                                <br />
+                                <br />
                                 @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFile", new { sourceName = "DatasourceTxt.txt", sourceType = "txt", newType = "application/csv", downloadName = "txt.csv" }, new { @class = "btn btn-default" })
                             }}
 
@@ -144,7 +135,8 @@
                 </div>
             </div>
 
-            <div class="col-md-9 pull-right">
+
+            <div class="col-md-6">
                 <div id="text" class="panel panel-default">
                     <div class="panel-heading">Datasource SQL (/App_Data/DatasourceSQL.mdf)</div>
                     <div class="panel-body">
@@ -180,9 +172,11 @@
                                 <hr />
 
                                 @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFile", new { sourceName = "DatasourceSQL.mdf", sourceType = "mdf", newType = "application/xml", downloadName = "mdf.xml" }, new { @class = "btn btn-default" })
-
+                                <br />
+                                <br />
                                 @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFile", new { sourceName = "DatasourceSQL.mdf", sourceType = "mdf", newType = "application/json", downloadName = "mdf.json" }, new { @class = "btn btn-default" })
-
+                                <br />
+                                <br />
                                 @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFile", new { sourceName = "DatasourceSQL.mdf", sourceType = "mdf", newType = "application/csv", downloadName = "mdf.csv" }, new { @class = "btn btn-default" })
 
                             } }
@@ -190,8 +184,9 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-9 pull-right">
+            </div>
+        <div class="row">
+            <div class="col-md-6">
                 <div id="text" class="panel panel-default">
                     <div class="panel-heading">Datasource JSON (/App_Data/DatasourceJson.json)</div>
                     <div class="panel-body">
@@ -228,17 +223,19 @@
                                 <hr />
 
                                 @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFile", new { sourceName = "DatasourceJson.json", sourceType = "json", newType = "application/xml", downloadName = "json.xml" }, new { @class = "btn btn-default" })
-
+                                <br />
+                                <br />
                                 @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFile", new { sourceName = "DatasourceJson.json", sourceType = "json", newType = "application/json", downloadName = "json.json" }, new { @class = "btn btn-default" })
-
+                                <br />
+                                <br />
                                 @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFile", new { sourceName = "DatasourceJson.json", sourceType = "json", newType = "application/csv", downloadName = "json.csv" }, new { @class = "btn btn-default" })
 
                             } }
-                            </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-md-9 pull-right">
+            <div class="col-md-6">
                 <div id="text" class="panel panel-default">
                     <div class="panel-heading">Datasource XML (/App_Data/DatasourceXml.xml)</div>
                     <div class="panel-body">
@@ -275,14 +272,16 @@
                                 <hr />
 
                                 @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFile", new { sourceName = "DatasourceXml.xml", sourceType = "xml", newType = "application/xml", downloadName = "xml.xml" }, new { @class = "btn btn-default" })
-
+                                <br />
+                                <br />
                                 @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFile", new { sourceName = "DatasourceXml.xml", sourceType = "xml", newType = "application/json", downloadName = "xml.json" }, new { @class = "btn btn-default" })
-
+                                <br />
+                                <br />
                                 @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFile", new { sourceName = "DatasourceXml.xml", sourceType = "xml", newType = "application/csv", downloadName = "xml.csv" }, new { @class = "btn btn-default" })
 
-                                }
                             }
-                            </div>
+                        }
+                    </div>
                 </div>
             </div>
 
