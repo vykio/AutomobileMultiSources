@@ -17,7 +17,7 @@ namespace AutomobileMultiSource.Common.Converters
 
         private HttpServerUtilityBase Server;
 
-        private string DatasourceName = "DatasourceTxt.txt";
+        private string DatasourceName = "DatasourceXml.xml";
         private string DatasourceLocation;
 
         public XmlDatasource(HttpServerUtilityBase server)
@@ -59,7 +59,7 @@ namespace AutomobileMultiSource.Common.Converters
                     sb.Append(": ");
                     sb.AppendLine(node.InnerText);
                     sb.AppendLine();
-                    
+
                 }
             }
 

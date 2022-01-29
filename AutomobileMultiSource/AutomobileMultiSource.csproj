@@ -124,6 +124,7 @@
     <Compile Include="Common\Converters\SqlDatasource.cs" />
     <Compile Include="Common\Converters\TargetDatasource.cs" />
     <Compile Include="Common\Converters\TextDatasource.cs" />
+    <Compile Include="Common\Converters\XmlDatasource.cs" />
     <Compile Include="Common\Hub\Concatenator.cs" />
     <Compile Include="Common\Hub\Hub.cs" />
     <Compile Include="Common\Hub\JsonToVehicule.cs" />

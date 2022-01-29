@@ -47,7 +47,7 @@
                             </table>
                         </div>
 
-                        @{ if (ViewBag.Sql.Count == 0 || ViewBag.Text.Count == 0)
+                        @{ if (ViewBag.Sql.Count == 0 || ViewBag.Text.Count == 0 || ViewBag.Xml.Count == 0 || ViewBag.Json.Count == 0)
                             {
                                 <div class="alert alert-warning" role="alert">Au moins une base source n'est pas uploadée</div>
                             }
@@ -184,19 +184,45 @@
                     <div class="panel-heading">Datasource JSON</div>
                     <div class="panel-body">
 
+                        <div class="well">
+                            <table>
+                                <tr>
+                                    <th class="col-md-4">Brand</th>
+                                    <th class="col-md-4">Model</th>
+                                    <th class="col-md-4">Registration</th>
+                                </tr>
 
+                                @foreach (var item in ViewBag.Json)
+                                {
+                                    <tr>
+                                        <td class="col-md-4">@item.Brand</td>
+                                        <td class="col-md-4">@item.Model</td>
+                                        <td class="col-md-4">@item.Registration</td>
+                                    </tr>
 
-                        @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceTxt.txt", type = "application/txt", downloadName = "TEST.txt" }, new { @class = "btn btn-default disabled" })
+                                }
+                            </table>
+                        </div>
 
-                        <hr />
+                        @{ if (ViewBag.Json.Count == 0)
+                            {
+                                <div class="alert alert-warning" role="alert">Veuillez uploader le fichier <a href="/Upload/UploadFile">DatasourceJson.json</a></div>
+                            }
+                            else
+                            {
 
-                        @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/xml", downloadName = "TEST.xml" }, new { @class = "btn btn-default disabled" })
+                                @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceJson.json", type = "application/txt", downloadName = "TEST.txt" }, new { @class = "btn btn-default disabled" })
 
-                        @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/json", downloadName = "TEST.json" }, new { @class = "btn btn-default disabled" })
+                                <hr />
 
-                        @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/csv", downloadName = "TEST.csv" }, new { @class = "btn btn-default disabled" })
+                                @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/xml", downloadName = "TEST.xml" }, new { @class = "btn btn-default disabled" })
 
-                    </div>
+                                @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/json", downloadName = "TEST.json" }, new { @class = "btn btn-default disabled" })
+
+                                @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/csv", downloadName = "TEST.csv" }, new { @class = "btn btn-default disabled" })
+
+                            } }
+                            </div>
                 </div>
             </div>
 
@@ -205,19 +231,46 @@
                     <div class="panel-heading">Datasource XML</div>
                     <div class="panel-body">
 
+                        <div class="well">
+                            <table>
+                                <tr>
+                                    <th class="col-md-4">Brand</th>
+                                    <th class="col-md-4">Model</th>
+                                    <th class="col-md-4">Registration</th>
+                                </tr>
 
+                                @foreach (var item in ViewBag.Xml)
+                                {
+                                    <tr>
+                                        <td class="col-md-4">@item.Brand</td>
+                                        <td class="col-md-4">@item.Model</td>
+                                        <td class="col-md-4">@item.Registration</td>
+                                    </tr>
 
-                        @Html.ActionLink("Télécharger", "Download", new { name = "XmlDatasource.xml", type = "application/xml", downloadName = "TEST.xml" }, new { @class = "btn btn-default" })
+                                }
+                            </table>
+                        </div>
 
-                        <hr />
+                        @{ if (ViewBag.Xml.Count == 0)
+                            {
+                                <div class="alert alert-warning" role="alert">Veuillez uploader le fichier <a href="/Upload/UploadFile">DatasourceXml.xml</a></div>
+                            }
+                            else
+                            {
 
-                        @Html.ActionLink("Convertir en TXT et Télécharger", "ConvertFileFromXml", new { name = "XmlDatasource.xml", sourceType = "application/xml", newType = "application/txt", downloadName = "XmlToTxt.txt" }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Télécharger", "Download", new { name = "XmlDatasource.xml", type = "application/xml", downloadName = "TEST.xml" }, new { @class = "btn btn-default" })
 
-                        @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromXml", new { name = "XmlDatasource.xml", sourceType = "application/xml", newType = "application/json", downloadName = "XmlToJson.json" }, new { @class = "btn btn-default" })
+                                <hr />
 
-                        @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromXml", new { name = "XmlDatasource.xml", sourceType = "application/xml", newType = "application/csv", downloadName = "XmlToCsv.csv" }, new { @class = "btn btn-default disabled" })
+                                @Html.ActionLink("Convertir en TXT et Télécharger", "ConvertFileFromXml", new { name = "XmlDatasource.xml", sourceType = "application/xml", newType = "application/txt", downloadName = "XmlToTxt.txt" }, new { @class = "btn btn-default" })
 
-                    </div>
+                                @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromXml", new { name = "XmlDatasource.xml", sourceType = "application/xml", newType = "application/json", downloadName = "XmlToJson.json" }, new { @class = "btn btn-default" })
+
+                                @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromXml", new { name = "XmlDatasource.xml", sourceType = "application/xml", newType = "application/csv", downloadName = "XmlToCsv.csv" }, new { @class = "btn btn-default disabled" })
+
+                                }
+                            }
+                            </div>
                 </div>
             </div>
 

@@ -39,6 +39,9 @@ namespace AutomobileMultiSource.Controllers
             JsonDatasource jsonSource = new JsonDatasource(Server);
             ViewBag.Json = jsonSource.CanConnect() ? jsonSource.GetVehicules() : new List<Vehicule>();
 
+            XmlDatasource xmlSource = new XmlDatasource(Server);
+            ViewBag.Xml = xmlSource.CanConnect() ? xmlSource.GetVehicules() : new List<Vehicule>();
+
             return View();
         }
 
