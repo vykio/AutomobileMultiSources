@@ -4,11 +4,11 @@
 }
 
 <main class="flex-shrink-0">
-    <div class="container" style="padding-top: 50px">
+    <div class="container">
 
         <h1>Upload Base de données de sortie</h1>
         <div id="upload_text" class="panel panel-default">
-            <div class="panel-heading">Upload base de données .MDF finale (stockée à /App_Data/FinalDatabase.txt)</div>
+            <div class="panel-heading">Upload base de données .MDF finale (stockée à /Imports/FinalDatabase.txt)</div>
             <div class="panel-body">
 
                 <div class="alert alert-info">Si vous avez le fichier FinalDatabase.mdf, vous pouvez l'importer ici. Sinon, il faut créer la base sous le même nom en utilisant le schéma de table présenté sur la page Panel. Il s'agit de la base cible qui va recevoir toutes les données.</div>
@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div id="upload_text" class="panel panel-default">
-                    <div class="panel-heading">Upload Datasource Texte (stockée à /App_Data/DatasourceTxt.txt)</div>
+                    <div class="panel-heading">Upload Datasource Texte (stockée à /Imports/DatasourceTxt.txt)</div>
                     <div class="panel-body">
 
                         @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -52,7 +52,7 @@
             <div class="col-md-6">
 
                 <div id="upload_sql" class="panel panel-default">
-                    <div class="panel-heading">Upload Datasource SQL (stockée à /App_Data/DatasourceSQL.mdf)</div>
+                    <div class="panel-heading">Upload Datasource SQL (stockée à /Imports/DatasourceSQL.mdf)</div>
                     <div class="panel-body">
 
                         @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -75,7 +75,7 @@
             <div class="col-md-6">
 
                 <div id="upload_json" class="panel panel-default">
-                    <div class="panel-heading">Upload Datasource JSON (stockée à /App_Data/DatasourceJson.json)</div>
+                    <div class="panel-heading">Upload Datasource JSON (stockée à /Imports/DatasourceJson.json)</div>
                     <div class="panel-body">
 
                         @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -95,7 +95,7 @@
             <div class="col-md-6">
 
                 <div id="upload_xml" class="panel panel-default">
-                    <div class="panel-heading">Upload Datasource XML (stockée à /App_Data/DatasourceXml.xml)</div>
+                    <div class="panel-heading">Upload Datasource XML (stockée à /Imports/DatasourceXml.xml)</div>
                     <div class="panel-body">
 
                         @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))

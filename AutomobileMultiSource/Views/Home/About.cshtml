@@ -1,7 +1,180 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Tutoriel";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+
+
+<main class="flex-shrink-0">
+
+    <h1>Tutoriel</h1>
+    <div class="container-fluid">
+        <div class="col-md-10">
+            <div id="step_1" class="panel panel-default">
+                <div class="panel-heading">1. Importer la base de donnée cible</div>
+                <div class="panel-body">
+
+                    <p>
+                        Pour importer les datasources, dirigez vous vers la page Upload à l'aide de la barre de navigation.
+                    </p>
+
+                    <p>
+                        Une fois que vous serez sur la page d'import, vous verrez ceci :
+                    </p>
+
+                    <img src="~/img/1.png" class="img-rounded center-block" style="max-width: 100%; height: auto; margin-top:10px; margin-bottom: 10px;" />
+
+                    <p>
+                        Cela signifie qu'il faut que vous importiez le fichier indiqué depuis le dossier /Imports du projet.
+                    </p>
+
+                    <p>
+                        Choisissez le fichier dont le nom est indiqué puis appuyez sur le bouton "Upload".
+                    </p>
+
+                    <p>
+                        Vous avez importé la base de donnée cible !
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <div id="step_2" class="panel panel-default">
+                <div class="panel-heading">2. Importer les datasources</div>
+                <div class="panel-body">
+
+                    <p>
+                        Pour importer les datasources, dirigez vous vers la page Upload à l'aide de la barre de navigation.
+                    </p>
+
+                    <p>
+                        Une fois que vous serez sur la page d'import, vous verrez ceci :
+                    </p>
+
+                    <img src="~/img/2.png" class="img-rounded center-block" style="max-width: 100%; height: auto; margin-top:10px; margin-bottom: 10px;" />
+
+                    <p>
+                        De la même manière que pour la première étape, choisissez le fichier dont le nom est indiqué puis appuyez sur le bouton "Upload".
+                    </p>
+
+                    <p>
+                        Répétez cette étape avec les 3 autres sources de données.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <div id="step_3" class="panel panel-default">
+                <div class="panel-heading">3. Vérification de l'importation</div>
+                <div class="panel-body">
+
+                    <p>
+                        Après avoir importer les datasources, rendez-vous sur la page Panel et vérifiez qu'aucun message de ce type ne soit afficher :
+                    </p>
+
+
+                    <img src="~/img/3.png" class="img-rounded center-block" style="max-width: 100%; height: auto; margin-top:10px; margin-bottom: 10px;" />
+
+                    <img src="~/img/4.png" class="img-rounded center-block" style="max-width: 100%; height: auto; margin-top:10px; margin-bottom: 10px;" />
+
+
+                    <p>
+                        Dans le cas où l'un de ces messages s'affiche, essayez de la ré-uploader. Si le problème persiste, déplacez manuellement la source manquante dans le dossier "/App_Data" du projet.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <div id="step_4" class="panel panel-default">
+                <div class="panel-heading">4. Page Panel</div>
+                <div class="panel-body">
+
+                    <p>
+                        Une fois que les datasources sont correctement importé, rendez-vous sur la page Panel. Vous devriez voir ceci :
+                    </p>
+
+                    <img src="~/img/5.png" class="img-rounded center-block" style="max-width: 100%; height: auto; margin-top:10px; margin-bottom: 10px;" />
+
+                    <p>
+                        Vous pouvez voir le contenu de la base cible et y effectuer deux actions :
+                    </p>
+
+                    <ul>
+                        <li>Supprimer son contenu ;</li>
+                        <li>Convertir les autres datasources au format SQL et injecter le resultat dans la base.</li>
+                    </ul>
+
+                    <p>
+                        Les données utilisés sont ici minimalistes. On peut imaginer avoir beaucoup plus de colonnes et d'entrées.
+                    </p>
+
+                    <p>
+                        Vous pouvez également récupérer son contenu sur votre machine sous les différents formats proposés.
+                    </p>
+
+                    <p>
+                        En dessous, vous pouvez voir le contenu de chacune des datasources que vous avez importé précédement.
+                    </p>
+
+                    <img src="~/img/6.png" class="img-rounded center-block" style="max-width: 100%; height: auto; margin-top:10px; margin-bottom: 10px;" />
+
+                    <p>
+                        Vous pouvez individuellement récupérer le contenu de chaque source de donnée dans un des formats proposés.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <div id="step_5" class="panel panel-default">
+                <div class="panel-heading">5. Convertir les datasources et remplir la base de donnée cible</div>
+                <div class="panel-body">
+
+                    <p>
+                        Si la base de donnée cible n'est pas vide, vous pouvez d'abord supprimer son contenu.
+                    </p>
+
+                    <p>
+                        Ensuite appuyez sur le bouton "Convertir toutes les datasources et remplir la base".
+                    </p>
+
+                    <p>
+                        Vous pouvez maintenant constater que les données des différentes datasources sont regroupés dans la base de donnée cible.
+                    </p>
+
+
+                    <img src="~/img/7.png" class="img-rounded center-block" style="max-width: 100%; height: auto; margin-top:10px; margin-bottom: 10px;" />
+
+                    <p>
+                        Vous pouvez maintenant télécharger le contenu de toutes les sources de données dans un fichier unique dans un des formats proposés.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <div id="step_6" class="panel panel-default">
+                <div class="panel-heading">6. Annonces</div>
+                <div class="panel-body">
+
+                    <p>
+                        Maintenant que les sources de données ont été fusionnés vers la base cible, nous pouvons nous rendre sur la page Annonces.
+                    </p>
+
+                    <img src="~/img/8.png" class="img-rounded center-block" style="max-width: 100%; height: auto; margin-top:10px; margin-bottom: 10px;" />
+                    
+                    <p>
+                        Sur cette page, nous pouvons imaginer une utilisation de la base de donnée cible par une entreprise de location ou de vente de véhicule.
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

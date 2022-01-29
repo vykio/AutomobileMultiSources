@@ -140,11 +140,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\DatasourceTxt.txt" />
-    <Content Include="App_Data\FinalDatabase.mdf" />
-    <Content Include="App_Data\FinalDatabase_log.ldf">
-      <DependentUpon>FinalDatabase.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -186,7 +181,9 @@
     <Content Include="Views\Upload\UploadFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Generated_Data\" />
+    <Folder Include="img\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
