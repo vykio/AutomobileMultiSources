@@ -55,16 +55,17 @@
                             {
                                 <div class="alert alert-warning" role="alert">
                                     La base FinalDatabase.mdf n'est pas dans le dossier App_Data du projet ! Créez la sur Visual Studio 2017 ou importez la:
-<span style="white-space: pre-wrap">
+                                    <span style="white-space: pre-wrap">
 
-CREATE TABLE [dbo].[Vehicule] (
-    [Id]           INT           IDENTITY (1, 1) NOT NULL,
-    [Brand]        NVARCHAR (50) NULL,
-    [Model]        NVARCHAR (50) NULL,
-    [Registration] NVARCHAR (50) NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
-);
-</span></div>
+                                        CREATE TABLE [dbo].[Vehicule] (
+                                        [Id]           INT           IDENTITY (1, 1) NOT NULL,
+                                        [Brand]        NVARCHAR (50) NULL,
+                                        [Model]        NVARCHAR (50) NULL,
+                                        [Registration] NVARCHAR (50) NULL,
+                                        PRIMARY KEY CLUSTERED ([Id] ASC)
+                                        );
+                                    </span>
+                                </div>
 
                             }
                             else
@@ -110,22 +111,22 @@ CREATE TABLE [dbo].[Vehicule] (
                         </div>
 
                         @{if (ViewBag.Text.Count == 0)
-                        {
-                            <div class="alert alert-warning" role="alert">Veuillez uploader le fichier <a href="/Upload/UploadFile">DatasourceTxt.txt</a></div>
-                        }
-                        else
-                        {
+                            {
+                                <div class="alert alert-warning" role="alert">Veuillez uploader le fichier <a href="/Upload/UploadFile">DatasourceTxt.txt</a></div>
+                            }
+                            else
+                            {
 
-                        @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceTxt.txt", type = "application/txt", downloadName = "TEST.txt" }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Télécharger", "Download", new { name = "DatasourceTxt.txt", type = "application/txt", downloadName = "TEST.txt" }, new { @class = "btn btn-default" })
 
-                        <hr />
+                                <hr />
 
-                        @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/xml", downloadName = "txtToXml.xml" }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Convertir en XML et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/xml", downloadName = "txtToXml.xml" }, new { @class = "btn btn-default" })
 
-                        @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/json", downloadName = "txtToJson.json" }, new { @class = "btn btn-default" })
+                                @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/json", downloadName = "txtToJson.json" }, new { @class = "btn btn-default" })
 
-                        @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/csv", downloadName = "txtToCsv.csv" }, new { @class = "btn btn-default" })
-                        }}
+                                @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/csv", downloadName = "txtToCsv.csv" }, new { @class = "btn btn-default" })
+                            }}
 
                     </div>
                 </div>
@@ -155,7 +156,7 @@ CREATE TABLE [dbo].[Vehicule] (
                             </table>
                         </div>
 
-                            @{ if (ViewBag.Sql.Count == 0)
+                        @{ if (ViewBag.Sql.Count == 0)
                             {
                                 <div class="alert alert-warning" role="alert">Veuillez uploader le fichier <a href="/Upload/UploadFile">DatasourceSQL.mdf</a></div>
                             }
@@ -174,7 +175,7 @@ CREATE TABLE [dbo].[Vehicule] (
 
                             } }
 
-                            </div>
+                    </div>
                 </div>
             </div>
 
@@ -194,6 +195,27 @@ CREATE TABLE [dbo].[Vehicule] (
                         @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/json", downloadName = "TEST.json" }, new { @class = "btn btn-default disabled" })
 
                         @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromTxt", new { name = "DatasourceTxt.txt", sourceType = "application/txt", newType = "application/csv", downloadName = "TEST.csv" }, new { @class = "btn btn-default disabled" })
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9 pull-right">
+                <div id="text" class="panel panel-default">
+                    <div class="panel-heading">Datasource XML</div>
+                    <div class="panel-body">
+
+
+
+                        @Html.ActionLink("Télécharger", "Download", new { name = "XmlDatasource.xml", type = "application/xml", downloadName = "TEST.xml" }, new { @class = "btn btn-default" })
+
+                        <hr />
+
+                        @Html.ActionLink("Convertir en TXT et Télécharger", "ConvertFileFromXml", new { name = "XmlDatasource.xml", sourceType = "application/xml", newType = "application/txt", downloadName = "XmlToTxt.txt" }, new { @class = "btn btn-default" })
+
+                        @Html.ActionLink("Convertir en JSON et Télécharger", "ConvertFileFromXml", new { name = "XmlDatasource.xml", sourceType = "application/xml", newType = "application/json", downloadName = "XmlToJson.json" }, new { @class = "btn btn-default" })
+
+                        @Html.ActionLink("Convertir en CSV et Télécharger", "ConvertFileFromXml", new { name = "XmlDatasource.xml", sourceType = "application/xml", newType = "application/csv", downloadName = "XmlToCsv.csv" }, new { @class = "btn btn-default disabled" })
 
                     </div>
                 </div>

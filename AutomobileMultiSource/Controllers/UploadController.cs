@@ -56,10 +56,10 @@ namespace AutomobileMultiSource.Controllers
                         ViewBag.UploadSqlMessage = "Sql Datasource Uploaded Successfully!!";
                         break;
                     case "json":
-                        ViewBag.UploadSqlMessage = "Json Datasource Uploaded Successfully!!";
+                        ViewBag.UploadJsonMessage = "Json Datasource Uploaded Successfully!!";
                         break;
                     case "xml":
-                        ViewBag.UploadSqlMessage = "Xml Datasource Uploaded Successfully!!";
+                        ViewBag.UploadXmlMessage = "Xml Datasource Uploaded Successfully!!";
                         break;
                 }
                 

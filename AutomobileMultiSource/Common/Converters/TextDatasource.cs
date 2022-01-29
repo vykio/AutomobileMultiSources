@@ -86,19 +86,9 @@ namespace AutomobileMultiSource.Common.Converters
                 from str in source
                 let fields = str.Split('\t')
                 select new XElement("Vehicule",
-                    //new XAttribute("Brand", fields[0]),
                     new XElement("Brand", fields[0]),
                     new XElement("Model", fields[1]),
                     new XElement("Registration", fields[2])
-                    /*new XElement("ContactTitle", fields[3]),
-                    new XElement("Phone", fields[4]),
-                    new XElement("FullAddress",
-                        new XElement("Address", fields[5]),
-                        new XElement("City", fields[6]),
-                        new XElement("Region", fields[7]),
-                        new XElement("PostalCode", fields[8]),
-                        new XElement("Country", fields[9])
-                    )*/
                 )
             );
 

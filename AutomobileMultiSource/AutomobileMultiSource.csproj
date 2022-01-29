@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\Converters\XmlDatasource.cs" />
     <Compile Include="Common\Converters\SqlDatasource.cs" />
     <Compile Include="Common\Converters\TargetDatasource.cs" />
     <Compile Include="Common\Converters\TextDatasource.cs" />

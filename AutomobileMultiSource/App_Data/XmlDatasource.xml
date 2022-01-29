@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfVehicule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Vehicule>
+    <Brand>Mercedes</Brand>
+    <Model>Classe A</Model>
+    <Registration>ZZ-999-ZZ</Registration>
+  </Vehicule>
+</ArrayOfVehicule>

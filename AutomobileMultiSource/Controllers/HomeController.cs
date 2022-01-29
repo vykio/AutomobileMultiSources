@@ -162,6 +162,37 @@ namespace AutomobileMultiSource.Controllers
             return null;
         }
 
+        public FileResult ConvertFileFromXml(string name, string sourceType, string newType, string downloadName)
+        {
+            if (sourceType == "application/xml")
+            {
+                string filename = Server.MapPath("~/App_Data/" + name);
+                string downloadFilePath = Server.MapPath("~/Generated_Data/" + downloadName);
+                XmlDatasource xmlDatasource = new XmlDatasource(Server);
+
+                switch (newType)
+                {
+                    case "application/txt":
+                        XmlDocument doc = new XmlDocument();
+                        doc.LoadXml(xmlDatasource.ToText());
+                        StreamWriter outStream = System.IO.File.CreateText(downloadFilePath);
+                        doc.Save(outStream);
+                        outStream.Close();
+                        break;
+                    case "application/json":
+                        string json = xmlDatasource.ToJson();
+                        System.IO.File.WriteAllText(downloadFilePath, json);
+                        break;
+                    default:
+                        break;
+                }
+
+                return File(downloadFilePath, newType, downloadName);
+            }
+
+            return null;
+        }
+
         public RedirectResult DeleteDatabaseContent()
         {
             Hub hub = new Hub(Server);
