@@ -36,6 +36,9 @@ namespace AutomobileMultiSource.Controllers
             TextDatasource textSource = new TextDatasource(Server);
             ViewBag.Text = textSource.CanConnect() ? textSource.GetVehicules() : new List<Vehicule>();
 
+            JsonDatasource jsonSource = new JsonDatasource(Server);
+            ViewBag.Json = jsonSource.CanConnect() ? jsonSource.GetVehicules() : new List<Vehicule>();
+
             return View();
         }
 
