@@ -259,5 +259,7 @@ paket-files/
 __pycache__/
 *.pyc
 
-AutomobileMultiSource/App_Data
-AutomobileMultiSource/Generated_Data
+AutomobileMultiSource/App_Data/**
+!AutomobileMultiSource/App_Data/.gitignore
+AutomobileMultiSource/Generated_Data/**
+!AutomobileMultiSource/Generated_Data/.gitignore

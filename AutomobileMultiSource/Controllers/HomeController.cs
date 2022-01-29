@@ -56,34 +56,6 @@ namespace AutomobileMultiSource.Controllers
             return View();
         }
 
-        public ActionResult ShowFile(string name, string type)
-        {
-
-            string path = Server.MapPath("~/App_Data/");
-            string file_name = path + name;
-            TextDatasource textDatasource = new TextDatasource(Server);
-
-            VehiculeConverter converter = new VehiculeConverter();
-
-            switch (type)
-            {
-                case "application/txt":
-                    string text = converter.ToCsv(textDatasource.GetVehicules());
-                    using (StreamReader sr = new StreamReader(file_name))
-                    {
-                        while (!sr.EndOfStream)
-                        {
-                            text += sr.ReadLine() + Environment.NewLine;
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-            return View();
-        }
-
         public FileResult Download(string name, string type, string downloadName)
         {
             string filename = Server.MapPath("~/App_Data/" + name);

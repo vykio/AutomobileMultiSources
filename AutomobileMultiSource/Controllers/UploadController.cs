@@ -73,7 +73,24 @@ namespace AutomobileMultiSource.Controllers
             }
             catch
             {
-                ViewBag.Message = "File upload failed!!";
+                switch (datasourceType)
+                {
+                    case "txt":
+                        ViewBag.UploadTxtMessage = "La source de données Texte n'a pas pu être uploadée, vérifiez l'existance du dossier App_Data/ dans le projet";
+                        break;
+                    case "sql":
+                        ViewBag.UploadSqlMessage = "La source de données SQL n'a pas pu être uploadée, vérifiez l'existance du dossier App_Data/ dans le projet";
+                        break;
+                    case "json":
+                        ViewBag.UploadJsonMessage = "La source de données JSON n'a pas pu être uploadée, vérifiez l'existance du dossier App_Data/ dans le projet";
+                        break;
+                    case "xml":
+                        ViewBag.UploadXmlMessage = "La source de données XML n'a pas pu être uploadée, vérifiez l'existance du dossier App_Data/ dans le projet";
+                        break;
+                    case "database":
+                        ViewBag.UploadTargetMessage = "La base de données cible n'a pas pu être uploadée, vérifiez l'existance du dossier App_Data/ dans le projet";
+                        break;
+                }
                 return View();
             }
         }

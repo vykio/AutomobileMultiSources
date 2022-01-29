@@ -64,33 +64,6 @@ namespace AutomobileMultiSource.Common.Converters
             return vehicules;
         }
 
-        /*public string ToJson()
-        {
-            var json = JsonConvert.SerializeObject(this.GetVehicules());
-
-            return json;
-        }
-
-        public string ToText()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string ToXml()
-        {
-            string xmlString = null;
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Vehicule>));
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                serializer.Serialize(memoryStream, this.GetVehicules());
-                memoryStream.Position = 0;
-                xmlString = new StreamReader(memoryStream).ReadToEnd();
-            }
-            XElement element = XElement.Parse(xmlString);
-
-            return element.ToString();
-        }*/
-
        
     }
 }

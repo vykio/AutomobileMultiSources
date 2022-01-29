@@ -9,17 +9,17 @@ namespace AutomobileMultiSource.Common.Hub
     public class Concatenator
     {
 
-        public static string Json(List<String> jsons)
+        public static List<Vehicule> Concatenate(List<List<Vehicule>> listes)
         {
 
             List<Vehicule> vehicules = new List<Vehicule>();
 
-            foreach(string json in jsons)
+            foreach(List<Vehicule> listeVehicule in listes)
             {
-                vehicules.AddRange(JsonToVehicule.GetVehicules(json));
+                vehicules.AddRange(listeVehicule);
             }
 
-            return JsonToVehicule.GetJson(vehicules);
+            return vehicules;
 
         }
 

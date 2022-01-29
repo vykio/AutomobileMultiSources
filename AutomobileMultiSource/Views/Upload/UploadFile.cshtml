@@ -6,6 +6,7 @@
 <main class="flex-shrink-0">
     <div class="container" style="padding-top: 50px">
 
+        <h1>Upload Base de données de sortie</h1>
         <div id="upload_text" class="panel panel-default">
             <div class="panel-heading">Upload base de données .MDF finale (stockée à /App_Data/FinalDatabase.txt)</div>
             <div class="panel-body">
@@ -25,83 +26,92 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div id="upload_text" class="panel panel-default">
-                <div class="panel-heading">Upload Datasource Texte (stockée à /App_Data/DatasourceTxt.txt)</div>
-                <div class="panel-body">
+        <br />
+        <h1>Uploads sources de données d'entrée</h1>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <div id="upload_text" class="panel panel-default">
+                    <div class="panel-heading">Upload Datasource Texte (stockée à /App_Data/DatasourceTxt.txt)</div>
+                    <div class="panel-body">
 
-                    @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <div>
-                            @Html.TextBox("file", "", new { type = "file" }) <br />
-                            <input type="hidden" value="txt" name="datasourceType" />
-                            <input type="submit" value="Upload" />
-                            @ViewBag.UploadTxtMessage
-                        </div>
-                    }
+                        @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div>
+                                @Html.TextBox("file", "", new { type = "file" }) <br />
+                                <input type="hidden" value="txt" name="datasourceType" />
+                                <input type="submit" value="Upload" />
+                                @ViewBag.UploadTxtMessage
+                            </div>
+                        }
 
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+
+                <div id="upload_sql" class="panel panel-default">
+                    <div class="panel-heading">Upload Datasource SQL (stockée à /App_Data/DatasourceSQL.mdf)</div>
+                    <div class="panel-body">
+
+                        @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div>
+                                @Html.TextBox("file", "", new { type = "file" }) <br />
+                                <input type="hidden" value="sql" name="datasourceType" />
+                                <input type="submit" value="Upload" />
+                                @ViewBag.UploadSqlMessage
+                            </div>
+                        }
+
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6">
 
-            <div id="upload_sql" class="panel panel-default">
-                <div class="panel-heading">Upload Datasource SQL (stockée à /App_Data/DatasourceSQL.mdf)</div>
-                <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
 
-                    @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <div>
-                            @Html.TextBox("file", "", new { type = "file" }) <br />
-                            <input type="hidden" value="sql" name="datasourceType" />
-                            <input type="submit" value="Upload" />
-                            @ViewBag.UploadSqlMessage
-                        </div>
-                    }
+                <div id="upload_json" class="panel panel-default">
+                    <div class="panel-heading">Upload Datasource JSON (stockée à /App_Data/DatasourceJson.json)</div>
+                    <div class="panel-body">
 
+                        @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div>
+                                @Html.TextBox("file", "", new { type = "file" }) <br />
+                                <input type="hidden" value="json" name="datasourceType" />
+                                <input type="submit" value="Upload" />
+                                @ViewBag.UploadJsonMessage
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+
+                <div id="upload_xml" class="panel panel-default">
+                    <div class="panel-heading">Upload Datasource XML (stockée à /App_Data/DatasourceXml.xml)</div>
+                    <div class="panel-body">
+
+                        @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div>
+                                @Html.TextBox("file", "", new { type = "file" }) <br />
+                                <input type="hidden" value="xml" name="datasourceType" />
+                                <input type="submit" value="Upload" />
+                                @ViewBag.UploadXmlMessage
+                            </div>
+                        }
+
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6">
-
-            <div id="upload_json" class="panel panel-default">
-                <div class="panel-heading">Upload Datasource JSON (stockée à /App_Data/DatasourceJson.json)</div>
-                <div class="panel-body">
-
-                    @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <div>
-                            @Html.TextBox("file", "", new { type = "file" }) <br />
-                            <input type="hidden" value="json" name="datasourceType" />
-                            <input type="submit" value="Upload" />
-                            @ViewBag.UploadJsonMessage
-                        </div>
-                    }
-
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-
-            <div id="upload_xml" class="panel panel-default">
-                <div class="panel-heading">Upload Datasource XML (stockée à /App_Data/DatasourceXml.xml)</div>
-                <div class="panel-body">
-
-                    @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        <div>
-                            @Html.TextBox("file", "", new { type = "file" }) <br />
-                            <input type="hidden" value="xml" name="datasourceType" />
-                            <input type="submit" value="Upload" />
-                            @ViewBag.UploadXmlMessage
-                        </div>
-                    }
-
-                </div>
-            </div>
-        </div>
     </div>
 </main>

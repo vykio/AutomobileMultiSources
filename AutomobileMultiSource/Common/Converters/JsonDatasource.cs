@@ -33,19 +33,9 @@ namespace AutomobileMultiSource.Common.Converters
             return JsonToVehicule.GetVehicules(this.GetData());
         }
 
-        public string GetData()
+        private string GetData()
         {
             return File.ReadAllText(DatasourceLocation);
         }
-
-        /*public string ToText()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string ToXml()
-        {
-            throw new NotImplementedException();
-        }*/
     }
 }
